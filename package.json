@@ -1,0 +1,58 @@
+{
+  "name": "remote-redux-devtools-on-debugger",
+  "version": "0.0.2",
+  "description": "remote-redux-devtools monitor on react-native debugger UI",
+  "main": "index.js",
+  "files": [
+    "bin",
+    "debugger.html"
+  ],
+  "bin": {
+    "remotedev-debugger-replace": "bin/replaceDebugger.js"
+  },
+  "scripts": {
+    "clean": "rm bundle.js debugger.html",
+    "build:webpack": "webpack --stats --progress",
+    "build": "npm run build:webpack && node buildCode.js",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhen0409/remote-redux-devtools-inject-debugger.git"
+  },
+  "keywords": [
+    "remote",
+    "redux",
+    "devtools",
+    "react",
+    "native",
+    "debugger"
+  ],
+  "authors": [
+    "Jhen <developer@jhen.me> (https://github.com/jhen0409)",
+    "Mihail Diordiev <zalmoxisus@gmail.com> (https://github.com/zalmoxisus)"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-runtime": "^6.3.19",
+    "ejs": "^2.3.4",
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "jsan": "^2.0.4",
+    "react": "^0.14.5",
+    "react-dock": "^0.2.3",
+    "react-dom": "^0.14.5",
+    "redux": "^3.0.5",
+    "redux-devtools": "^3.0.1",
+    "redux-devtools-log-monitor": "^1.0.1",
+    "redux-thunk": "^1.0.3",
+    "socketcluster-client": "^3.1.1"
+  }
+}
