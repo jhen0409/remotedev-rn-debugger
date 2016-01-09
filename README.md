@@ -20,4 +20,4 @@ It will replace `./node_modules/react-native/local-cli/server/util/debugger.html
 
 ## License
 
-[MIT]
+[MIT](LICENSE)
