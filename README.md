@@ -16,7 +16,7 @@ $ npm install -g remote-redux-devtools-on-debugger
 $ remotedev-debugger-replace
 ```
 
-It will replace `./node_modules/react-native/local-cli/server/util/debugger.html`. We recommend add to `postinstall` task.
+It will replace `./node_modules/react-native/local-cli/server/util/debugger.html`. We recommend add to `postinstall` task. (you can reference [this example](https://github.com/jhen0409/react-native-boilerplate/blob/master/postinstall.sh))
 
 ## License
 
