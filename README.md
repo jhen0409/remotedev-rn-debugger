@@ -2,7 +2,7 @@
 
 ![Demo](demo.gif)
 
-Let React Native debugger inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) monitor. The monitor code is edit from [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
+Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) monitor to React Native debugger. The monitor code is edit from [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
 
 ## Installation
 
