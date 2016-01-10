@@ -52,5 +52,8 @@
     "socketcluster-client": "^3.1.1",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "remotedev-app": "0.0.2"
   }
 }
