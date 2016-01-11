@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhen0409/remote-redux-devtools-inject-debugger.git"
+    "url": "git+https://github.com/jhen0409/remote-redux-devtools-on-debugger.git"
   },
   "keywords": [
     "remote",
@@ -41,16 +41,10 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.3.19",
     "ejs": "^2.3.4",
-    "jsan": "^2.0.4",
     "react": "^0.14.5",
     "react-dock": "^0.2.3",
     "react-dom": "^0.14.5",
-    "redux": "^3.0.5",
-    "redux-devtools": "^3.0.1",
-    "redux-devtools-log-monitor": "^1.0.1",
-    "redux-thunk": "^1.0.3",
     "remotedev-app": "0.0.2",
-    "socketcluster-client": "^3.1.1",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
   }
