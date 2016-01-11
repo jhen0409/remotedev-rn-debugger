@@ -1,9 +1,6 @@
 const fs = require('fs');
-const ejs = require('ejs');
+const key = '__remotedevBundleCode__';
+const bundleCode = fs.readFileSync('./bundle.js', 'utf-8');
+const html = fs.readFileSync('./debugger.tmpl.html', 'utf-8');
 
-fs.writeFileSync(
-  './debugger.html',
-  ejs.render(fs.readFileSync('./debugger.ejs', 'utf-8'), {
-    bundleCode: fs.readFileSync('./bundle.js', 'utf-8')
-  })
-);
+fs.writeFileSync('./debugger.html', html.replace(key, bundleCode));
