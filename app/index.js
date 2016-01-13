@@ -5,7 +5,7 @@ import DevTools from 'remotedev-app';
 
 render(
   <Dock position="right" isVisible>
-    <DevTools/>
+    <DevTools socketOptions={window.remotedevOptions} />
   </Dock>,
-  document.getElementById('remote-redux-devtools-inject-debugger')
+  document.getElementById('remote-redux-devtools-on-debugger')
 );

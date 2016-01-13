@@ -46,5 +46,8 @@
     "remotedev-app": "^0.1.0",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
   }
 }
