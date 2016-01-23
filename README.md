@@ -60,8 +60,6 @@ export default function configureStore(initialState) {
 }
 ```
 
-On Android, you should use `10.0.2.2` (Genymotion: `10.0.3.2`) instead of `localhost`.
-
 #### Run
 
 ```bash
