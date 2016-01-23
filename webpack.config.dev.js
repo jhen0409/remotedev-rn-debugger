@@ -22,18 +22,16 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    extensions: [ '', '.js' ]
+    extensions: ['', '.js']
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: [ 'es2015', 'stage-0', 'react', 'react-hmre' ]
-        }
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: /node_modules/,
+      query: {
+        presets: ['es2015', 'stage-0', 'react', 'react-hmre']
       }
-    ]
+    }]
   }
 };
