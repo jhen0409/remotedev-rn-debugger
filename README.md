@@ -42,6 +42,7 @@ If you debug on real device, you should use LAN IP instead of `localhost`.
 #### Edit configureStore.js
 
 ```js
+import { Platform } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
@@ -51,7 +52,7 @@ export default function configureStore(initialState) {
   const finalCreateStore = compose(
     applyMiddleware(thunk),
     devTools({
-      name: 'InstanceNameHere',
+      name: Platform.OS,
       hostname: 'localhost',
       port: 5678
     })
