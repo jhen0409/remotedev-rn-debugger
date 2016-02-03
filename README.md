@@ -1,5 +1,9 @@
 # Remote Redux DevTools monitor on React Native Debugger UI
 
+[![NPM version](http://img.shields.io/npm/v/remote-redux-devtools-on-debugger.svg?style=flat)](https://www.npmjs.com/package/remote-redux-devtools-on-debugger)
+[![Dependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger)
+[![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger#info=devDependencies)
+
 ![Demo](demo.gif)
 
 Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) monitor to React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
