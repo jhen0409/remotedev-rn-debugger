@@ -53,15 +53,15 @@ import devTools from 'remote-redux-devtools';
 import reducer from '../reducers';
 
 export default function configureStore(initialState) {
-  const finalCreateStore = compose(
+  const enhancer = compose(
     applyMiddleware(thunk),
     devTools({
       name: Platform.OS,
       hostname: 'localhost',
       port: 5678
     })
-  )(createStore);
-  return finalCreateStore(reducer, initialState);
+  );
+  return createStore(reducer, initialState, enhancer);
 }
 ```
 
