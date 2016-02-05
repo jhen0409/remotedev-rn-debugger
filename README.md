@@ -17,7 +17,7 @@ $ npm install -g remote-redux-devtools-on-debugger
 ## Usage
 
 ```bash
-$ remotedev-debugger-replace --hostname localhost --port 5678
+$ remotedev-debugger [options]
 ```
 
 The `./node_modules/react-native/local-cli/server/util/debugger.html` will be replaced.
