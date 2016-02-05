@@ -22,7 +22,14 @@ $ remotedev-debugger-replace --hostname localhost --port 5678
 
 The `./node_modules/react-native/local-cli/server/util/debugger.html` will be replaced.
 
-The `hostname`, `port` is optional, when you open `debugger-ui`, will connect to your [remotedev server](https://github.com/zalmoxisus/remotedev-server) point with options (you can also set in the UI). if you not set `hostname`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
+#### Options
+
+* --hostname: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname, will apply `debugger.html` settings.
+* --port: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port, will apply `debugger.html` settings.
+* --runserver: if you have set `hostname`, will start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with options on local.
+* --desktop: replace [react-native-desktop](https://github.com/ptmt/react-native-desktop) debugger.
+
+If you not set `hostname`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
 ## Use custom options in React Native project
 
@@ -31,14 +38,13 @@ You can ignore this guide if you used [default options](https://github.com/zalmo
 #### Install dev dependencies
 
 ```bash
-$ npm install --save-dev remote-redux-devtools remotedev-server remote-redux-devtools-on-debugger
+$ npm install --save-dev remote-redux-devtools remote-redux-devtools-on-debugger
 ```
 
 #### Add to scripts field (package.json)
 
 ```json
-"debugger-replace": "remotedev-debugger-replace --hostname localhost --port 5678",
-"remotedev": "npm run debugger-replace && remotedev --hostname localhost --port 5678",
+"remotedev": "remotedev-debugger --hostname localhost --port 5678 --runserver",
 ```
 
 If you debug on real device, you should use LAN IP instead of `localhost`.

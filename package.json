@@ -8,7 +8,8 @@
     "debugger.html"
   ],
   "bin": {
-    "remotedev-debugger-replace": "bin/replaceDebugger.js"
+    "remotedev-debugger-replace": "bin/debugger.js",
+    "remotedev-debugger": "bin/debugger.js"
   },
   "scripts": {
     "clean": "rm bundle.js debugger.html",
@@ -50,6 +51,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "remotedev-server": "0.0.3"
   }
 }
