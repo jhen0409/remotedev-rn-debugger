@@ -24,9 +24,11 @@ The `./node_modules/react-native/local-cli/server/util/debugger.html` will be re
 
 #### Options
 
-* --hostname: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname, will apply `debugger.html` settings.
-* --port: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port, will apply `debugger.html` settings.
-* --runserver: if you have set `hostname`, will start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with options on local.
+* --hostname: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname, will apply `debugger.html` settings.  
+(default: `localhost` if `port` is set)
+* --port: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port, will apply `debugger.html` settings.  
+(default: `8000` if `runserver` or `hostname` is set)
+* --runserver: start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with options on local.
 * --desktop: replace [react-native-desktop](https://github.com/ptmt/react-native-desktop) debugger.
 
 If you not set `hostname`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
@@ -44,10 +46,10 @@ $ npm install --save-dev remote-redux-devtools remote-redux-devtools-on-debugger
 #### Add to scripts field (package.json)
 
 ```json
-"remotedev": "remotedev-debugger --hostname localhost --port 5678 --runserver",
+"remotedev": "remotedev-debugger --port 5678 --runserver",
 ```
 
-If you debug on real device, you should use LAN IP instead of `localhost`.
+If you debug on real device, you should use LAN IP as a `hostname`.
 
 #### Edit configureStore.js
 
@@ -63,7 +65,6 @@ export default function configureStore(initialState) {
     applyMiddleware(thunk),
     devTools({
       name: Platform.OS,
-      hostname: 'localhost',
       port: 5678
     })
   );

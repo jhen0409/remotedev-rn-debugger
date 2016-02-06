@@ -14,7 +14,11 @@ module.exports = function(argv) {
     moduleName = 'react-native-desktop';
   }
   const distPath = path.join(process.cwd(), `node_modules/${moduleName}/local-cli/server/util/debugger.html`);
-  if (argv.hostname) {
+  if (argv.runserver) {
+    argv.port = argv.port || 8000;
+    startRemoteDev(argv);
+  }
+  if (argv.hostname || argv.port) {
     fs.writeFileSync(
       distPath,
       html.replace(
@@ -26,10 +30,6 @@ module.exports = function(argv) {
         })
       )
     );
-    // have hostname, start remotedev server
-    if (argv.runserver) {
-      startRemoteDev(argv);
-    }
   } else {
     fs.writeFileSync(distPath, html);
   }
