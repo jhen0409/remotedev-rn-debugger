@@ -1,12 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const port = process.env.HOT_LOAD_PORT || 3030;
-
-const fs = require('fs');
-const key = '__remotedevBundlePath__';
-const bundlePath = `http://localhost:${port}/js/bundle.js`;
-const html = fs.readFileSync('./debugger.tmpl.dev.html', 'utf-8');
-fs.writeFileSync('./debugger.html', html.replace(key, bundlePath));
+const port = 3030;
 
 module.exports = {
   devtool: 'eval-cheap-module-source-map',

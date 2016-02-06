@@ -5,7 +5,7 @@
   "main": "index.js",
   "files": [
     "bin",
-    "debugger.html"
+    "bundle.js"
   ],
   "bin": {
     "remotedev-debugger-replace": "bin/cli.js",
@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rm bundle.js debugger.html",
     "build:webpack": "webpack --stats --progress",
-    "build": "npm run build:webpack && node buildCode.js",
+    "build": "npm run build:webpack",
     "dev": "webpack-dev-server --config=webpack.config.dev.js --host=localhost --hot --inline --colors",
     "prepublish": "npm run build"
   },
