@@ -8,8 +8,8 @@
     "debugger.html"
   ],
   "bin": {
-    "remotedev-debugger-replace": "bin/debugger.js",
-    "remotedev-debugger": "bin/debugger.js"
+    "remotedev-debugger-replace": "bin/cli.js",
+    "remotedev-debugger": "bin/cli.js"
   },
   "scripts": {
     "clean": "rm bundle.js debugger.html",
