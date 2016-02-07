@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const name = 'react-native';
 const flag = '<!--  remote-redux-devtools-on-debugger -->';
-const bundleCode = fs.readFileSync(__dirname + '/../bundle.js', 'utf-8');
+const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 const startRemoteDev = require('remotedev-server');
 
 function injectBundleCode(filePath, scriptTag, options) {
   const code =
     flag +
+    '<style>.ReactModalPortal { z-index: 99999999; position: fixed; }</style>' +
     '<div id="remote-redux-devtools-on-debugger"></div>' +
     (options ? `<script>window.remotedevOptions = ${JSON.stringify(options)}</script>` : '') +
     scriptTag +
