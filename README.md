@@ -6,7 +6,7 @@
 
 ![Demo](demo.gif)
 
-Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) monitor to React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
+Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) / [remote-redux-devtools](https://github.com/zalmoxisus/remotedev) monitor to React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
 
 ## Installation
 
@@ -31,7 +31,7 @@ The `./node_modules/react-native/local-cli/server/util/debugger.html` will be re
 * --runserver: start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with options on local.
 * --desktop: replace [react-native-desktop](https://github.com/ptmt/react-native-desktop) debugger.
 
-If you not set `hostname`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
+If you not set `hostname` or `port`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
 ## Use custom options in React Native project
 
@@ -40,7 +40,8 @@ You can ignore this guide if you used [default options](https://github.com/zalmo
 #### Install dev dependencies
 
 ```bash
-$ npm install --save-dev remote-redux-devtools remote-redux-devtools-on-debugger
+$ npm install --save-dev remote-redux-devtools  # or remotedev
+$ npm install --save-dev remote-redux-devtools-on-debugger
 ```
 
 #### Add to scripts field (package.json)
