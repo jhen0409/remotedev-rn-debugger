@@ -6,7 +6,7 @@
 
 ![Demo](demo.gif)
 
-Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) / [remote-redux-devtools](https://github.com/zalmoxisus/remotedev) monitor to React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
+Inject [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) / [remotedev](https://github.com/zalmoxisus/remotedev) monitor to React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
 
 ## Installation
 
