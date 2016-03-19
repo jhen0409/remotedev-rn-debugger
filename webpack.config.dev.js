@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const port = 3030;
 
@@ -9,17 +8,17 @@ module.exports = {
   output: {
     path: __dirname,
     filename: 'bundle.js',
-    publicPath: `http://localhost:${port}/js/`
+    publicPath: `http://localhost:${port}/js/`,
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
   },
   module: {
     loaders: [{
@@ -27,8 +26,8 @@ module.exports = {
       loader: 'babel',
       exclude: /node_modules/,
       query: {
-        presets: ['es2015', 'stage-0', 'react', 'react-hmre']
-      }
-    }]
-  }
+        presets: ['es2015', 'stage-0', 'react', 'react-hmre'],
+      },
+    }],
+  },
 };

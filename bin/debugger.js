@@ -1,6 +1,3 @@
-'use strict';
-
-const fs = require('fs');
 const path = require('path');
 const name = 'react-native';
 const startRemoteDev = require('remotedev-server');
@@ -27,7 +24,7 @@ module.exports = argv => {
     if (argv.hostname || argv.port) {
       injectServer.inject(modulePath, {
         hostname: argv.hostname,
-        port: argv.port || 8000
+        port: argv.port || 8000,
       });
     } else {
       injectServer.inject(modulePath);
@@ -40,7 +37,7 @@ module.exports = argv => {
     injectDebugger.inject(modulePath, {
       hostname: argv.hostname,
       port: argv.port || 8000,
-      autoReconnect: true
+      autoReconnect: true,
     });
   } else {
     injectDebugger.inject(modulePath);
@@ -48,7 +45,6 @@ module.exports = argv => {
 
   // Run RemoteDev server
   if (argv.runserver) {
-    argv.port = argv.port || 8000;
-    return startRemoteDev(argv);
+    return startRemoteDev(Object.assign({}, argv, { port: argv.port || 8000 }));
   }
 };

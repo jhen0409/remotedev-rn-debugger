@@ -9,15 +9,12 @@ const serverPath = 'local-cli/server/server.js';
 const serverFlag = '    _server(argv, config, resolve, reject);';
 
 exports.inject = (modulePath, options) => {
-  if (!options) {
-    options = {};
-  }
-  options.runserver = true;
+  const opts = Object.assign({}, options, { runserver: true });
   const code =
     `${startFlag}\n` +
     '    console.log("[RemoveDev] Server starting...");\n' +
     '    console.log("-".repeat(80) + "\\n");\n' +
-    `    require("${name}")(${JSON.stringify(options)})\n` +
+    `    require("${name}")(${JSON.stringify(opts)})\n` +
     '      .on("ready", () => {\n' +
     '        console.log("-".repeat(80));\n' +
     `    ${serverFlag}\n` +
