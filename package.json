@@ -11,21 +11,9 @@
     "remotedev-debugger-replace": "bin/cli.js",
     "remotedev-debugger": "bin/cli.js"
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "env": {
-      "browser": true,
-      "node": true
-    },
-    "rules": {
-      "consistent-return": 0,
-      "strict": 0,
-      "prefer-template": 0
-    }
-  },
   "scripts": {
-    "lint": "eslint bin/*.js app/*.js webpack.*",
+    "lint": "eslint bin/ app/ test/*.js webpack.*",
+    "test": "mocha --compilers js:babel-core/register -r test/setup test/*.test.js",
     "clean": "rm bundle.js debugger.html",
     "build:webpack": "webpack --stats --progress",
     "build": "npm run build:webpack",
@@ -60,9 +48,12 @@
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.3.19",
+    "chai": "^3.5.0",
     "eslint": "~2.2.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.3",
+    "fs-extra": "^0.26.7",
+    "mocha": "^2.4.5",
     "react": "^0.14.7",
     "react-dock": "^0.2.3",
     "react-dom": "^0.14.7",
@@ -73,5 +64,20 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "remotedev-server": "0.0.4"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+      "consistent-return": 0,
+      "strict": 0,
+      "prefer-template": 0
+    }
   }
 }

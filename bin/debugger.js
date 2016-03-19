@@ -1,8 +1,10 @@
+const fs = require('fs');
 const path = require('path');
 const name = 'react-native';
 const startRemoteDev = require('remotedev-server');
 const injectDebugger = require('./injectDebugger');
 const injectServer = require('./injectServer');
+const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
 const getModulePath = moduleName => path.join(
   process.cwd(),
@@ -34,13 +36,13 @@ module.exports = argv => {
 
   // Inject debugger
   if (argv.hostname || argv.port) {
-    injectDebugger.inject(modulePath, {
+    injectDebugger.inject(modulePath, bundleCode, {
       hostname: argv.hostname,
       port: argv.port || 8000,
       autoReconnect: true,
     });
   } else {
-    injectDebugger.inject(modulePath);
+    injectDebugger.inject(modulePath, bundleCode);
   }
 
   // Run RemoteDev server
