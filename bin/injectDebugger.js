@@ -22,7 +22,7 @@ module.exports = (modulePath, options) => {
 
   const filePath = path.join(modulePath, debuggerPath);
   const html = fs.readFileSync(filePath, 'utf-8');
-  let position = html.indexOf(flag);  // already injected?
+  let position = html.indexOf(flag);  // already injected ?
   if (position === -1) {
     position = html.indexOf('</body>');
   }

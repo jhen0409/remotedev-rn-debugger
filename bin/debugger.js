@@ -5,6 +5,7 @@ const path = require('path');
 const name = 'react-native';
 const startRemoteDev = require('remotedev-server');
 const injectDebugger = require('./injectDebugger');
+const injectServer = require('./injectServer');
 
 const getModulePath = moduleName => path.join(
   process.cwd(),
@@ -12,8 +13,22 @@ const getModulePath = moduleName => path.join(
 );
 
 module.exports = argv => {
-  // Inject debugger
   const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
+
+  // Inject server
+  if (argv.injectserver) {
+    if (argv.hostname || argv.port) {
+      injectServer(modulePath, {
+        hostname: argv.hostname,
+        port: argv.port || 8000
+      });
+    } else {
+      injectServer(modulePath);
+    }
+    return;
+  }
+
+  // Inject debugger
   if (argv.hostname || argv.port) {
     injectDebugger(modulePath, {
       hostname: argv.hostname,
@@ -27,6 +42,6 @@ module.exports = argv => {
   // Run RemoteDev server
   if (argv.runserver) {
     argv.port = argv.port || 8000;
-    startRemoteDev(argv);
+    return startRemoteDev(argv);
   }
 };
