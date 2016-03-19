@@ -28,8 +28,10 @@ The `./node_modules/react-native/local-cli/server/util/debugger.html` will be re
 (default: `localhost` if `port` is set)
 * --port: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port, will apply `debugger.html` settings.  
 (default: `8000` if `runserver` or `hostname` is set)
-* --runserver: start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with options on local.
+* --runserver: start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option on local.
+* --injectserver: inject [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option to `./node_modules/react-native/local-cli/server/server.js`, then you can start ReactNative local server and RemoteDev local server with one command (`$ npm start`).
 * --desktop: replace [react-native-desktop](https://github.com/ptmt/react-native-desktop) debugger.
+* --revert: revert all injection.
 
 If you not set `hostname` or `port`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
