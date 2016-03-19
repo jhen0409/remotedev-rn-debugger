@@ -1,6 +1,6 @@
 {
   "name": "remote-redux-devtools-on-debugger",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The remote-redux-devtools / remotedev monitor on react-native debugger",
   "main": "bin/debugger.js",
   "files": [
@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint bin/ app/ test/*.js webpack.*",
     "test": "mocha --compilers js:babel-core/register -r test/setup test/*.test.js",
-    "clean": "rm bundle.js debugger.html",
+    "clean": "rm bundle.js",
     "build:webpack": "webpack --stats --progress",
     "build": "npm run build:webpack",
     "dev": "webpack-dev-server --config=webpack.config.dev.js --host=localhost --hot --inline --colors",
