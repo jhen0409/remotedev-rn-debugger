@@ -6,7 +6,7 @@ const flag = '<!--  remote-redux-devtools-on-debugger -->';
 const debuggerPath = 'local-cli/server/util/debugger.html';
 const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
-module.exports = (modulePath, options) => {
+exports.inject = (modulePath, options) => {
   let scriptTag = `<script>${bundleCode}</script>`;
   // Development mode
   if (process.env.__DEV__) {
@@ -27,4 +27,13 @@ module.exports = (modulePath, options) => {
     position = html.indexOf('</body>');
   }
   fs.writeFileSync(filePath, html.substr(0, position) + code);
+};
+
+exports.revert = (modulePath) => {
+  const filePath = path.join(modulePath, debuggerPath);
+  const html = fs.readFileSync(filePath, 'utf-8');
+  const position = html.indexOf(flag);
+  if (position !== -1) {
+    fs.writeFileSync(filePath, html.substr(0, position) + '</body></html>');
+  }
 };

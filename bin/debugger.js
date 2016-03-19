@@ -15,28 +15,35 @@ const getModulePath = moduleName => path.join(
 module.exports = argv => {
   const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
 
+  // Revert all injection
+  if (argv.revert) {
+    injectServer.revert(modulePath);
+    injectDebugger.revert(modulePath);
+    return;
+  }
+
   // Inject server
   if (argv.injectserver) {
     if (argv.hostname || argv.port) {
-      injectServer(modulePath, {
+      injectServer.inject(modulePath, {
         hostname: argv.hostname,
         port: argv.port || 8000
       });
     } else {
-      injectServer(modulePath);
+      injectServer.inject(modulePath);
     }
     return;
   }
 
   // Inject debugger
   if (argv.hostname || argv.port) {
-    injectDebugger(modulePath, {
+    injectDebugger.inject(modulePath, {
       hostname: argv.hostname,
       port: argv.port || 8000,
       autoReconnect: true
     });
   } else {
-    injectDebugger(modulePath);
+    injectDebugger.inject(modulePath);
   }
 
   // Run RemoteDev server

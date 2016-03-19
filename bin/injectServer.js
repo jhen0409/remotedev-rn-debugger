@@ -8,7 +8,7 @@ const endFlag = `/* ${name} end */`;
 const serverPath = 'local-cli/server/server.js';
 const serverFlag = '    _server(argv, config, resolve, reject);';
 
-module.exports = (modulePath, options) => {
+exports.inject = (modulePath, options) => {
   if (!options) {
     options = {};
   }
@@ -36,4 +36,17 @@ module.exports = (modulePath, options) => {
     filePath,
     serverCode.substr(0, start) + code + serverCode.substr(end, serverCode.length)
   );
+};
+
+exports.revert = (modulePath) => {
+  const filePath = path.join(modulePath, serverPath);
+  const serverCode = fs.readFileSync(filePath, 'utf-8');
+  const start = serverCode.indexOf(startFlag); // already injected ?
+  const end = serverCode.indexOf(endFlag) + endFlag.length;
+  if (start !== -1) {
+    fs.writeFileSync(
+      filePath,
+      serverCode.substr(0, start) + serverFlag + serverCode.substr(end, serverCode.length)
+    );
+  }
 };
