@@ -5,9 +5,15 @@ const path = require('path');
 const name = 'remote-redux-devtools-on-debugger';
 const flag = `<!--  ${name} -->`;
 const end = '</body>\n</html>\n';
-const debuggerPath = 'local-cli/server/util/debugger.html';
+
+exports.dir = 'local-cli/server/util';
+exports.file = 'debugger.html';
+exports.path = path.join(exports.dir, exports.file);
 
 exports.inject = (modulePath, bundleCode, options) => {
+  const filePath = path.join(modulePath, exports.path);
+  if (!fs.existsSync(filePath)) return false;
+
   // Check development mode
   const bundleTag = !process.env.__DEV__ ?
     `  <script>\n    ${bundleCode}\n  </script>\n` :
@@ -21,20 +27,23 @@ exports.inject = (modulePath, bundleCode, options) => {
     `  <div id="${name}"></div>\n` +
     optionsTag + bundleTag + end;
 
-  const filePath = path.join(modulePath, debuggerPath);
   const html = fs.readFileSync(filePath, 'utf-8');
   let position = html.indexOf(flag);  // already injected ?
   if (position === -1) {
     position = html.indexOf('</body>');
   }
   fs.writeFileSync(filePath, html.substr(0, position) + code);
+  return true;
 };
 
 exports.revert = (modulePath) => {
-  const filePath = path.join(modulePath, debuggerPath);
+  const filePath = path.join(modulePath, exports.path);
+  if (!fs.existsSync(filePath)) return false;
+
   const html = fs.readFileSync(filePath, 'utf-8');
   const position = html.indexOf(flag);
   if (position !== -1) {
     fs.writeFileSync(filePath, html.substr(0, position) + end);
   }
+  return true;
 };

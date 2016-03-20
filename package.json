@@ -62,6 +62,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "chalk": "^1.1.1",
     "minimist": "^1.2.0",
     "remotedev-server": "0.0.4"
   },
@@ -77,7 +78,8 @@
     "rules": {
       "consistent-return": 0,
       "strict": 0,
-      "prefer-template": 0
+      "prefer-template": 0,
+      "no-console": 0
     }
   }
 }

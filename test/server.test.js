@@ -7,7 +7,7 @@ const versions = ['0.21'];
 const fixturePath = 'fixtures/server';
 
 const run = version => {
-  describe(`RN v${version} local-cli/server/server.js`, () => {
+  describe(`RN v${version} ${injectServer.path}`, () => {
     const actualCode = fs.readFileSync(
       path.join(__dirname, fixturePath, `${version}.actual.js`),
       'utf-8'
@@ -16,25 +16,33 @@ const run = version => {
       path.join(__dirname, fixturePath, `${version}.expected.js`),
       'utf-8'
     );
-    const modulePath = `${__dirname}/temp/${version}`;
-    const dirPath = `${modulePath}/local-cli/server`;
-    const serverPath = path.join(dirPath, 'server.js');
+    const modulePath = path.join(__dirname, `/temp/${version}`);
+    const dirPath = path.join(modulePath, injectServer.dir);
+    const serverPath = path.join(dirPath, injectServer.file);
     fs.mkdirsSync(dirPath);
     fs.writeFileSync(serverPath, actualCode);
 
     it('should inject server', () => {
-      injectServer.inject(modulePath, {
+      let pass = injectServer.inject(modulePath, {
         hostname: 'test',
         port: 1234,
       });
+      expect(pass).to.be.true;
       const serverCode = fs.readFileSync(serverPath, 'utf-8');
       expect(serverCode).to.equal(expectedCode);
+
+      pass = injectServer.inject('');
+      expect(pass).to.be.false;
     });
 
     it('should revert server', () => {
-      injectServer.revert(modulePath);
+      let pass = injectServer.revert(modulePath);
+      expect(pass).to.be.true;
       const serverCode = fs.readFileSync(serverPath, 'utf-8');
       expect(serverCode).to.equal(actualCode);
+
+      pass = injectServer.revert('');
+      expect(pass).to.be.false;
     });
   });
 };

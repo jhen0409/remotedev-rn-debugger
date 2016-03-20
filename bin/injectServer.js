@@ -5,10 +5,16 @@ const path = require('path');
 const name = 'remote-redux-devtools-on-debugger';
 const startFlag = `/* ${name} start */`;
 const endFlag = `/* ${name} end */`;
-const serverPath = 'local-cli/server/server.js';
 const serverFlag = '    _server(argv, config, resolve, reject);';
 
+exports.dir = 'local-cli/server';
+exports.file = 'server.js';
+exports.path = path.join(exports.dir, exports.file);
+
 exports.inject = (modulePath, options) => {
+  const filePath = path.join(modulePath, exports.path);
+  if (!fs.existsSync(filePath)) return false;
+
   const opts = Object.assign({}, options, { runserver: true });
   const code =
     `${startFlag}\n` +
@@ -21,7 +27,6 @@ exports.inject = (modulePath, options) => {
     '      });\n' +
     `${endFlag}`;
 
-  const filePath = path.join(modulePath, serverPath);
   const serverCode = fs.readFileSync(filePath, 'utf-8');
   let start = serverCode.indexOf(startFlag);  // already injected ?
   let end = serverCode.indexOf(endFlag) + endFlag.length;
@@ -33,10 +38,13 @@ exports.inject = (modulePath, options) => {
     filePath,
     serverCode.substr(0, start) + code + serverCode.substr(end, serverCode.length)
   );
+  return true;
 };
 
 exports.revert = (modulePath) => {
-  const filePath = path.join(modulePath, serverPath);
+  const filePath = path.join(modulePath, exports.path);
+  if (!fs.existsSync(filePath)) return false;
+
   const serverCode = fs.readFileSync(filePath, 'utf-8');
   const start = serverCode.indexOf(startFlag); // already injected ?
   const end = serverCode.indexOf(endFlag) + endFlag.length;
@@ -46,4 +54,5 @@ exports.revert = (modulePath) => {
       serverCode.substr(0, start) + serverFlag + serverCode.substr(end, serverCode.length)
     );
   }
+  return true;
 };
