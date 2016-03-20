@@ -43,15 +43,21 @@ You can ignore this guide if you used [default options](https://github.com/zalmo
 #### Install dev dependencies
 
 ```bash
-$ npm install --save-dev remote-redux-devtools  # or remotedev
-$ npm install --save-dev remote-redux-devtools-on-debugger
+$ npm install --save-dev remote-redux-devtools
+$ npm install --save-dev remote-redux-devtools-on-debugger # or global
 ```
 
-#### Add to scripts field (package.json)
+#### Add command
 
-```json
-"remotedev": "remotedev-debugger --port 5678 --runserver",
+Add command to package.json:
+
 ```
+"scripts": {
+  "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
+}
+```
+
+It will be run after `npm install`. (You can run `npm run postinstall` first)
 
 If you debug on real device, you should use LAN IP as a `hostname`.
 
@@ -75,14 +81,6 @@ export default function configureStore(initialState) {
   );
   return createStore(reducer, initialState, enhancer);
 }
-```
-
-#### Run
-
-```bash
-$ npm run remotedev
-# on another terminal tab
-$ npm start
 ```
 
 You can reference [this example](https://github.com/jhen0409/react-native-boilerplate/blob/master/package.json).
