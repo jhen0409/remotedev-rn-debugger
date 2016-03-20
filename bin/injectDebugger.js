@@ -2,22 +2,24 @@
 
 const fs = require('fs');
 const path = require('path');
-const flag = '<!--  remote-redux-devtools-on-debugger -->';
+const name = 'remote-redux-devtools-on-debugger';
+const flag = `<!--  ${name} -->`;
+const end = '</body>\n</html>\n';
 const debuggerPath = 'local-cli/server/util/debugger.html';
 
 exports.inject = (modulePath, bundleCode, options) => {
-  let scriptTag = `<script>${bundleCode}</script>`;
-  // Development mode
-  if (process.env.__DEV__) {
-    scriptTag = '<script src="http://localhost:3030/js/bundle.js"></script>';
-  }
+  // Check development mode
+  const bundleTag = !process.env.__DEV__ ?
+    `  <script>\n    ${bundleCode}\n  </script>\n` :
+    '  <script src="http://localhost:3030/js/bundle.js"></script>\n';
+  const optionsTag = options ?
+    `  <script>window.remotedevOptions = ${JSON.stringify(options)};</script>\n` :
+    '';
   const code =
-    flag +
-    '<style>.ReactModalPortal { z-index: 99999999; position: fixed; }</style>' +
-    '<div id="remote-redux-devtools-on-debugger"></div>' +
-    (options ? `<script>window.remotedevOptions = ${JSON.stringify(options)}</script>` : '') +
-    scriptTag +
-    '</body></html>';
+    `${flag}\n` +
+    '  <style>.ReactModalPortal { z-index: 99999999; position: fixed; }</style>\n' +
+    `  <div id="${name}"></div>\n` +
+    optionsTag + bundleTag + end;
 
   const filePath = path.join(modulePath, debuggerPath);
   const html = fs.readFileSync(filePath, 'utf-8');
@@ -33,6 +35,6 @@ exports.revert = (modulePath) => {
   const html = fs.readFileSync(filePath, 'utf-8');
   const position = html.indexOf(flag);
   if (position !== -1) {
-    fs.writeFileSync(filePath, html.substr(0, position) + '</body>\n</html>\n');
+    fs.writeFileSync(filePath, html.substr(0, position) + end);
   }
 };

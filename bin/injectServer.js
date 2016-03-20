@@ -23,7 +23,7 @@ exports.inject = (modulePath, options) => {
 
   const filePath = path.join(modulePath, serverPath);
   const serverCode = fs.readFileSync(filePath, 'utf-8');
-  let start = serverCode.indexOf(startFlag); // already injected ?
+  let start = serverCode.indexOf(startFlag);  // already injected ?
   let end = serverCode.indexOf(endFlag) + endFlag.length;
   if (start === -1) {
     start = serverCode.indexOf(serverFlag);
