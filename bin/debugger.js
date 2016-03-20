@@ -8,12 +8,12 @@ const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8'
 
 const getModulePath = moduleName => {
   const cwd = process.cwd();
-  // Use case: run node_modules/react-native/packager/packager.sh with XCode/RunAndroid
-  if (cwd.indexOf('node_modules/react-native/packager') !== -1) {
+  // Use case: run node_modules/${moduleName}/packager/packager.sh with XCode/RunAndroid
+  if (cwd.indexOf(`node_modules/${moduleName}/packager`) !== -1) {
     return path.join(cwd, `../../../node_modules/${moduleName}`);
   }
   return path.join(cwd, `node_modules/${moduleName}`);
-}
+};
 
 module.exports = argv => {
   const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
