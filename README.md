@@ -23,18 +23,19 @@ $ remotedev-debugger [options]
 
 The `./node_modules/react-native/local-cli/server/util/debugger.html` will be replaced.
 
-#### Options
+#### Options (--option)
 
-* --hostname: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname, will apply `debugger.html` settings.  
-(default: `localhost` if `port` is set)
-* --port: the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port, will apply `debugger.html` settings.  
-(default: `8000` if `runserver` or `hostname` is set)
-* --runserver: start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option on local.
-* --injectserver: inject [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option to `./node_modules/react-native/local-cli/server/server.js`, then you can start ReactNative local server and RemoteDev local server with one command (`$ npm start`).
-* --desktop: replace [react-native-desktop](https://github.com/ptmt/react-native-desktop) debugger.
-* --revert: revert all injection.
+Name | Description
+--- | ---
+hostname | The [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname. (*default*: `localhost` if `port` is set)
+port | The [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port. (*default*: `8000` if `runserver` or `hostname` is set)
+runserver | Start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option on local. (*default*: `false`)
+injectserver | Inject [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/server.js`, then you can start ReactNative local server and RemoteDev local server with one command (`$ npm start`). (*default*: `false`)
+injectdebugger | Inject [remotedev-app](https://github.com/zalmoxisus/remotedev-app) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/util/debugger.html`. (*default*: `true`)
+desktop | Use [react-native-desktop](https://github.com/ptmt/react-native-desktop) module name instead of react-native. (*default*: `false`)
+revert | Revert all injection. (*default*: `false`)
 
-If you not set `hostname` or `port`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
+If you not set `hostname` or `port` or `runserver` or `injectserver`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
 ## Use custom options in React Native project
 
