@@ -31,8 +31,8 @@ module.exports = argv => {
     msg = 'Revert injection of RemoteDev monitor from React Native debugger';
     log(passDbg, msg + (!passDbg ? `, the file '${injectDebugger.path}' not found.` : '.'));
 
-    if (!passServ || !passDbg) process.exit(1);
-    return;
+    if (!passServ || !passDbg) return false;
+    return true;
   }
 
   // Inject server
@@ -48,7 +48,7 @@ module.exports = argv => {
     }
     const msg = 'Inject RemoteDev server into React Native local server';
     log(pass, msg + (!pass ? `, the file '${injectServer.path}' not found.` : '.'));
-    if (!pass) process.exit(1);
+    if (!pass) return false;
   }
 
   // Inject debugger
@@ -65,11 +65,12 @@ module.exports = argv => {
     }
     const msg = 'Inject RemoteDev monitor into React Native debugger';
     log(pass, msg + (!pass ? `, the file '${injectDebugger.path}' not found.` : '.'));
-    if (!pass) process.exit(1);
+    if (!pass) return false;
   }
 
   // Run RemoteDev server
   if (argv.runserver) {
     return startRemoteDev(Object.assign({}, argv, { port: argv.port || 8000 }));
   }
+  return true;
 };

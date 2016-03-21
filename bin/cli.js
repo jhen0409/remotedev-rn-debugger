@@ -6,4 +6,5 @@ const argv = require('minimist')(process.argv.slice(2), {
     injectdebugger: true,
   },
 });
-require('./debugger')(argv);
+const result = require('./main')(argv);
+if (!result) process.exit(1);
