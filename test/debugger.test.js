@@ -16,7 +16,7 @@ const run = version => {
       path.join(__dirname, fixturePath, `${version}.expected.html`),
       'utf-8'
     );
-    const modulePath = path.join(__dirname, `/temp/${version}`);
+    const modulePath = path.join(__dirname, 'temp', version);
     const dirPath = path.join(modulePath, injectDebugger.dir);
     const debuggerPath = path.join(dirPath, injectDebugger.file);
     fs.mkdirsSync(dirPath);

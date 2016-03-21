@@ -24,7 +24,7 @@ function server(argv, config) {
 /* remote-redux-devtools-on-debugger start */
     console.log("[RemoveDev] Server starting...");
     console.log("-".repeat(80) + "\n");
-    require("remote-redux-devtools-on-debugger")({"hostname":"test","port":1234,"runserver":true})
+    require("remote-redux-devtools-on-debugger")({"hostname":"test","port":1234,"runserver":true,"injectdebugger":false})
       .on("ready", () => {
         console.log("-".repeat(80));
         _server(argv, config, resolve, reject);

@@ -15,7 +15,7 @@ exports.inject = (modulePath, options) => {
   const filePath = path.join(modulePath, exports.path);
   if (!fs.existsSync(filePath)) return false;
 
-  const opts = Object.assign({}, options, { runserver: true });
+  const opts = Object.assign({}, options, { runserver: true, injectdebugger: false });
   const code =
     `${startFlag}\n` +
     '    console.log("[RemoveDev] Server starting...");\n' +

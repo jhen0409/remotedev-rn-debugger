@@ -9,18 +9,12 @@ const injectDebugger = require('./injectDebugger');
 const injectServer = require('./injectServer');
 const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
-const getModulePath = moduleName => {
-  const cwd = process.cwd();
-  // Use case: run node_modules/${moduleName}/packager/packager.sh with XCode/RunAndroid
-  if (cwd.indexOf(path.join(`node_modules/${moduleName}/packager`)) !== -1) {
-    return path.join(cwd, `../../../node_modules/${moduleName}`);
-  }
-  return path.join(cwd, `node_modules/${moduleName}`);
-};
+const getModulePath = moduleName =>
+  path.join(process.cwd(), 'node_modules', moduleName);
 
 const log = (pass, msg) => {
   const prefix = pass ? chalk.green.bgBlack('PASS') : chalk.red.bgBlack('FAIL');
-  const color = pass ? chalk.green : chalk.red;
+  const color = pass ? chalk.blue : chalk.red;
   console.log(prefix, color(msg));
 };
 
@@ -31,11 +25,11 @@ module.exports = argv => {
   if (argv.revert) {
     const passServ = injectServer.revert(modulePath);
     let msg = 'Revert injection of RemoteDev server from React Native local server';
-    log(passServ, msg + (!passServ ? `, the file '${injectServer.path}' not found.` : ''));
+    log(passServ, msg + (!passServ ? `, the file '${injectServer.path}' not found.` : '.'));
 
     const passDbg = injectDebugger.revert(modulePath);
     msg = 'Revert injection of RemoteDev monitor from React Native debugger';
-    log(passDbg, msg + (!passDbg ? `, the file '${injectDebugger.path}' not found.` : ''));
+    log(passDbg, msg + (!passDbg ? `, the file '${injectDebugger.path}' not found.` : '.'));
 
     if (!passServ || !passDbg) process.exit(1);
     return;
@@ -53,25 +47,26 @@ module.exports = argv => {
       pass = injectServer.inject(modulePath);
     }
     const msg = 'Inject RemoteDev server into React Native local server';
-    log(pass, msg + (!pass ? `, the file '${injectServer.path}' not found.` : ''));
+    log(pass, msg + (!pass ? `, the file '${injectServer.path}' not found.` : '.'));
     if (!pass) process.exit(1);
-    return;
   }
 
   // Inject debugger
-  let pass;
-  if (argv.hostname || argv.port) {
-    pass = injectDebugger.inject(modulePath, bundleCode, {
-      hostname: argv.hostname,
-      port: argv.port || 8000,
-      autoReconnect: true,
-    });
-  } else {
-    pass = injectDebugger.inject(modulePath, bundleCode);
+  if (argv.injectdebugger) {
+    let pass;
+    if (argv.hostname || argv.port) {
+      pass = injectDebugger.inject(modulePath, bundleCode, {
+        hostname: argv.hostname,
+        port: argv.port || 8000,
+        autoReconnect: true,
+      });
+    } else {
+      pass = injectDebugger.inject(modulePath, bundleCode);
+    }
+    const msg = 'Inject RemoteDev monitor into React Native debugger';
+    log(pass, msg + (!pass ? `, the file '${injectDebugger.path}' not found.` : '.'));
+    if (!pass) process.exit(1);
   }
-  const msg = 'Inject RemoteDev monitor into React Native debugger';
-  log(pass, msg + (!pass ? `, the file '${injectDebugger.path}' not found.` : ''));
-  if (!pass) process.exit(1);
 
   // Run RemoteDev server
   if (argv.runserver) {
