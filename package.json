@@ -41,7 +41,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.4.0",
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^6.0.0-beta.6",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
@@ -49,7 +49,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.3.19",
     "chai": "^3.5.0",
-    "eslint": "~2.2.0",
+    "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.3",
     "fs-extra": "^0.26.7",
@@ -64,7 +64,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "minimist": "^1.2.0",
-    "remotedev-server": "0.0.4"
+    "remotedev-server": "0.0.6"
   },
   "babel": {
     "presets": [
