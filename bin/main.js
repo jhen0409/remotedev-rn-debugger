@@ -40,7 +40,7 @@ module.exports = argv => {
     let pass;
     if (argv.hostname || argv.port) {
       pass = injectServer.inject(modulePath, {
-        hostname: argv.hostname,
+        hostname: argv.hostname || 'localhost',
         port: argv.port || 8000,
       });
     } else {
@@ -56,7 +56,7 @@ module.exports = argv => {
     let pass;
     if (argv.hostname || argv.port) {
       pass = injectDebugger.inject(modulePath, bundleCode, {
-        hostname: argv.hostname,
+        hostname: argv.hostname || 'localhost',
         port: argv.port || 8000,
         autoReconnect: true,
       });
