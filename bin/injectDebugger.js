@@ -14,12 +14,13 @@ exports.inject = (modulePath, bundleCode, options) => {
   const filePath = path.join(modulePath, exports.path);
   if (!fs.existsSync(filePath)) return false;
 
+  const opts = Object.assign({}, options, { autoReconnect: true });
   // Check development mode
   const bundleTag = !process.env.__DEV__ ?
     `  <script>\n    ${bundleCode}\n  </script>\n` :
     '  <script src="http://localhost:3030/js/bundle.js"></script>\n';
   const optionsTag = options ?
-    `  <script>window.remotedevOptions = ${JSON.stringify(options)};</script>\n` :
+    `  <script>window.remotedevOptions = ${JSON.stringify(opts)};</script>\n` :
     '';
   const code =
     `${flag}\n` +

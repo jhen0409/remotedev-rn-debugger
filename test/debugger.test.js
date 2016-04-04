@@ -26,7 +26,6 @@ const run = version => {
       let pass = injectDebugger.inject(modulePath, '__THIS_IS_A_BUNDLE_CODE__', {
         hostname: 'test',
         port: 1234,
-        autoReconnect: true,
       });
       expect(pass).to.be.true;
       const debuggerCode = fs.readFileSync(debuggerPath, 'utf-8');
