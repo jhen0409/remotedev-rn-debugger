@@ -130,7 +130,10 @@ connectToDebuggerProxy();
     <p>Status: <span id="status">Loading...</span></p>
   </div>
 <!--  remote-redux-devtools-on-debugger -->
-  <style>.ReactModalPortal { z-index: 99999999; position: fixed; }</style>
+  <style>
+    body { overflow: hidden; }
+    .ReactModalPortal { z-index: 99999999; position: fixed; }
+  </style>
   <div id="remote-redux-devtools-on-debugger"></div>
   <script>window.remotedevOptions = {"hostname":"test","port":1234,"autoReconnect":true};</script>
   <script>
