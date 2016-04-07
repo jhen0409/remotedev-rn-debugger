@@ -57,7 +57,7 @@
     "react": "^0.14.7",
     "react-dock": "^0.2.3",
     "react-dom": "^0.14.7",
-    "remotedev-app": "^0.2.9",
+    "remotedev-app": "^0.3.0",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
   },
