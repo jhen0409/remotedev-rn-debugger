@@ -12,15 +12,20 @@ Injecting [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-dev
 ## Installation
 
 ```bash
-$ npm install -g remote-redux-devtools-on-debugger
+$ npm install --save-dev remote-redux-devtools-on-debugger
 ```
 
 ## Usage
 
-```bash
-$ remotedev-debugger [options]
+Add command to your project's package.json:
+
+```
+"scripts": {
+  "postinstall": "remotedev-debugger [options]"
+}
 ```
 
+It will be run after `npm install`. (You can run `npm run postinstall` first)  
 The `./node_modules/react-native/local-cli/server/util/debugger.html` will be replaced.
 
 #### Options (--option)
@@ -37,7 +42,7 @@ revert | Revert all injection. (*default*: `false`)
 
 If you not set `hostname` or `port` or `runserver` or `injectserver`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
-## Use custom options in React Native project
+## Example - Use custom options in React Native project
 
 You can ignore this guide if you used [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
@@ -45,12 +50,12 @@ You can ignore this guide if you used [default options](https://github.com/zalmo
 
 ```bash
 $ npm install --save-dev remote-redux-devtools
-$ npm install --save-dev remote-redux-devtools-on-debugger # or global
+$ npm install --save-dev remote-redux-devtools-on-debugger
 ```
 
 #### Add command
 
-Add command to package.json:
+Add command to your project's package.json:
 
 ```
 "scripts": {
@@ -58,8 +63,7 @@ Add command to package.json:
 }
 ```
 
-It will be run after `npm install`. (You can run `npm run postinstall` first)
-
+It will be run after `npm install`. (You can run `npm run postinstall` first)  
 If you debug on real device, you should use LAN IP as a `hostname`.
 
 #### Edit configureStore.js
