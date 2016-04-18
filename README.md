@@ -1,6 +1,6 @@
 # Remote Redux DevTools monitor on React Native Debugger
 
-[![Build Status](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger)
+[![Build Status](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger)
 [![NPM version](http://img.shields.io/npm/v/remote-redux-devtools-on-debugger.svg?style=flat)](https://www.npmjs.com/package/remote-redux-devtools-on-debugger)
 [![Dependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger)
 [![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger#info=devDependencies)
