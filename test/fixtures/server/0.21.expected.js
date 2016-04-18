@@ -22,13 +22,13 @@ const runServer = require('./runServer');
 function server(argv, config) {
   return new Promise((resolve, reject) => {
 /* remote-redux-devtools-on-debugger start */
-    console.log("[RemoveDev] Server starting...");
-    console.log("-".repeat(80) + "\n");
     require("remote-redux-devtools-on-debugger")({"hostname":"test","port":1234,"runserver":true,"injectdebugger":false})
-      .on("ready", () => {
-        console.log("-".repeat(80));
-        _server(argv, config, resolve, reject);
-      });
+      .then(server =>
+        server.on("ready", () => {
+          if (!server.portAlreadyUsed) console.log("-".repeat(80));
+          _server(argv, config, resolve, reject);
+        })
+      );
 /* remote-redux-devtools-on-debugger end */
   });
 }

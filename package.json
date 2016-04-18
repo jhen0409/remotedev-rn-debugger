@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
+    "getport": "^0.1.0",
     "minimist": "^1.2.0",
     "remotedev-server": "0.0.6"
   },
