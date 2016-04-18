@@ -18,13 +18,13 @@ exports.inject = (modulePath, options) => {
   const opts = Object.assign({}, options, { runserver: true, injectdebugger: false });
   const code =
     `${startFlag}\n` +
-    '    console.log("[RemoveDev] Server starting...");\n' +
-    '    console.log("-".repeat(80) + "\\n");\n' +
     `    require("${name}")(${JSON.stringify(opts)})\n` +
-    '      .on("ready", () => {\n' +
-    '        console.log("-".repeat(80));\n' +
-    `    ${serverFlag}\n` +
-    '      });\n' +
+    '      .then(server =>\n' +
+    '        server.on("ready", () => {\n' +
+    '          if (!server.portAlreadyUsed) console.log("-".repeat(80));\n' +
+    `      ${serverFlag}\n` +
+    '        })\n' +
+    '      );\n' +
     `${endFlag}`;
 
   const serverCode = fs.readFileSync(filePath, 'utf-8');

@@ -4,9 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const name = 'react-native';
-const startRemoteDev = require('remotedev-server');
 const injectDebugger = require('./injectDebugger');
 const injectServer = require('./injectServer');
+const runServer = require('./runServer');
 const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
 const getModulePath = moduleName =>
@@ -58,7 +58,7 @@ module.exports = argv => {
 
   // Run RemoteDev server
   if (argv.runserver) {
-    return startRemoteDev(options || { port: 8000 });
+    return runServer(options || { port: 8000 });
   }
   return true;
 };
