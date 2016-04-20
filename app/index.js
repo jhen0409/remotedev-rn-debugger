@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import Dock from 'react-dock';
 import DevTools from 'remotedev-app';
 
-// Now disabled buttonbar
 // prevent setting from previous UI settings
 localStorage.removeItem('s:hostname');
 localStorage.removeItem('s:port');
@@ -37,7 +36,7 @@ class DevToolsDock extends Component {
         isVisible
         onSizeChange={this.handleSizeChange}
       >
-        <DevTools socketOptions={this.props.options} noButtonBar />
+        <DevTools socketOptions={this.props.options} />
       </Dock>
     );
   }
