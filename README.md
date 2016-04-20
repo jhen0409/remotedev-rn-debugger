@@ -5,7 +5,7 @@
 [![Dependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger)
 [![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger#info=devDependencies)
 
-![Demo](demo.gif)
+![Demo](https://cloud.githubusercontent.com/assets/3001525/14666899/b425be06-070e-11e6-8d6b-c7c0ff327708.png)
 
 Injecting [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) / [remotedev](https://github.com/zalmoxisus/remotedev) monitor into React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
 
