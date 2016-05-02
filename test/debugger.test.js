@@ -24,6 +24,7 @@ const run = version => {
 
     it('should inject debugger', () => {
       let pass = injectDebugger.inject(modulePath, '__THIS_IS_A_BUNDLE_CODE__', {
+        secure: false,
         hostname: 'test',
         port: 1234,
       });

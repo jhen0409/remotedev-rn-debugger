@@ -22,10 +22,18 @@ const runServer = require('./runServer');
 function server(argv, config) {
   return new Promise((resolve, reject) => {
 /* remote-redux-devtools-on-debugger start */
-    require("remote-redux-devtools-on-debugger")({"hostname":"test","port":1234,"runserver":true,"injectdebugger":false})
-      .then(server =>
-        server.on("ready", () => {
-          if (!server.portAlreadyUsed) console.log("-".repeat(80));
+    const _fs = require("fs");
+    const _path = require("path");
+    const _readFile = filePath => _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");
+    const _opts = {"hostname":"test","port":1234,"runserver":true,"injectdebugger":false};
+    if (_opts.protocol === "https") {
+      _opts.key = _opts.key ? _readFile(_opts.key) : null;
+      _opts.cert = _opts.cert ? _readFile(_opts.cert) : null;
+    }
+    require("remote-redux-devtools-on-debugger")(_opts)
+      .then(_remotedev =>
+        _remotedev.on("ready", () => {
+          if (!_remotedev.portAlreadyUsed) console.log("-".repeat(80));
           _server(argv, config, resolve, reject);
         })
       );

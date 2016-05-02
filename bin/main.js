@@ -18,6 +18,16 @@ const log = (pass, msg) => {
   console.log(prefix, color(msg));
 };
 
+const getFullPath = filePath => path.resolve(process.cwd(), filePath);
+
+const assignSecureOptions = (options, argv) =>
+  Object.assign({}, options, argv.secure ? {
+    protocol: 'https',
+    key: argv.key ? getFullPath(argv.key) : null,
+    cert: argv.cert ? getFullPath(argv.cert) : null,
+    passphrase: argv.passphrase || null,
+  } : null);
+
 module.exports = argv => {
   const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
 
@@ -36,13 +46,14 @@ module.exports = argv => {
   }
 
   const options = argv.hostname || argv.port ? {
+    secure: argv.secure,
     hostname: argv.hostname || 'localhost',
     port: argv.port || 8000,
   } : null;
 
   // Inject server
   if (argv.injectserver) {
-    const pass = injectServer.inject(modulePath, options);
+    const pass = injectServer.inject(modulePath, assignSecureOptions(options, argv));
     const msg = 'Inject RemoteDev server into React Native local server';
     log(pass, msg + (pass ? '.' : `, the file '${injectServer.path}' not found.`));
     if (!pass) return false;
@@ -58,7 +69,7 @@ module.exports = argv => {
 
   // Run RemoteDev server
   if (argv.runserver) {
-    return runServer(options || { port: 8000 });
+    return runServer(assignSecureOptions(options || { secure: argv.secure, port: 8000 }, argv));
   }
   return true;
 };

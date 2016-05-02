@@ -35,6 +35,7 @@ Name | Description
 hostname | The [remotedev-server](https://github.com/zalmoxisus/remotedev-server) hostname. (*default*: `localhost` if `port` is set)
 port | The [remotedev-server](https://github.com/zalmoxisus/remotedev-server) port. (*default*: `8000` if `runserver` or `hostname` is set)
 runserver | Start the [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option on local. (*default*: `false`)
+secure | Use https protocol for `hostname`. If you're use `runserver` or `injectserver` option, you can provide `key`, `cert`, `passphrase` options for `remotedev-server`. (*default*: `false`)
 injectserver | Inject [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/server.js`, then you can start ReactNative local server and RemoteDev local server with one command (`$ npm start`). (*default*: `false`)
 injectdebugger | Inject [remotedev-app](https://github.com/zalmoxisus/remotedev-app) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/util/debugger.html`. (*default*: `true`)
 desktop | Use [react-native-desktop](https://github.com/ptmt/react-native-desktop) module name instead of react-native. (*default*: `false`)

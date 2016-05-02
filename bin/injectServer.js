@@ -18,10 +18,18 @@ exports.inject = (modulePath, options) => {
   const opts = Object.assign({}, options, { runserver: true, injectdebugger: false });
   const code =
     `${startFlag}\n` +
-    `    require("${name}")(${JSON.stringify(opts)})\n` +
-    '      .then(server =>\n' +
-    '        server.on("ready", () => {\n' +
-    '          if (!server.portAlreadyUsed) console.log("-".repeat(80));\n' +
+    '    const _fs = require("fs");\n' +
+    '    const _path = require("path");\n' +
+    '    const _readFile = filePath => _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");\n' +
+    `    const _opts = ${JSON.stringify(opts)};\n` +
+    '    if (_opts.protocol === "https") {\n' +
+    `      _opts.key = _opts.key ? _readFile(_opts.key) : null;\n` +
+    `      _opts.cert = _opts.cert ? _readFile(_opts.cert) : null;\n` +
+    '    }\n' +
+    `    require("${name}")(_opts)\n` +
+    '      .then(_remotedev =>\n' +
+    '        _remotedev.on("ready", () => {\n' +
+    '          if (!_remotedev.portAlreadyUsed) console.log("-".repeat(80));\n' +
     `      ${serverFlag}\n` +
     '        })\n' +
     '      );\n' +
