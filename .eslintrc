@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "consistent-return": 0,
+    "strict": 0,
+    "prefer-template": 0,
+    "no-console": 0
+  }
+}

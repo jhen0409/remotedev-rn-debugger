@@ -70,21 +70,5 @@
   },
   "peerDependencies": {
     "remote-redux-devtools": ">= 0.2.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-0"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "rules": {
-      "consistent-return": 0,
-      "strict": 0,
-      "prefer-template": 0,
-      "no-console": 0
-    }
   }
 }
