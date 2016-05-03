@@ -20,7 +20,8 @@ exports.inject = (modulePath, options) => {
     `${startFlag}\n` +
     '    const _fs = require("fs");\n' +
     '    const _path = require("path");\n' +
-    '    const _readFile = filePath => _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");\n' +
+    '    const _readFile = filePath =>\n' +
+    '      _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");\n' +
     `    const _opts = ${JSON.stringify(opts)};\n` +
     '    if (_opts.protocol === "https") {\n' +
     `      _opts.key = _opts.key ? _readFile(_opts.key) : null;\n` +

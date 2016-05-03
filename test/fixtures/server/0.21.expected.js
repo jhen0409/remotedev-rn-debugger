@@ -24,7 +24,8 @@ function server(argv, config) {
 /* remote-redux-devtools-on-debugger start */
     const _fs = require("fs");
     const _path = require("path");
-    const _readFile = filePath => _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");
+    const _readFile = filePath =>
+      _fs.readFileSync(_path.resolve(process.cwd(), filePath), "utf-8");
     const _opts = {"hostname":"test","port":1234,"runserver":true,"injectdebugger":false};
     if (_opts.protocol === "https") {
       _opts.key = _opts.key ? _readFile(_opts.key) : null;
