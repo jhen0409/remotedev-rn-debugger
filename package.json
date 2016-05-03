@@ -8,7 +8,6 @@
     "bundle.js"
   ],
   "bin": {
-    "remotedev-debugger-replace": "bin/cli.js",
     "remotedev-debugger": "bin/cli.js"
   },
   "scripts": {
