@@ -2,7 +2,7 @@
   "name": "remote-redux-devtools-on-debugger",
   "version": "0.4.4",
   "description": "Injecting remote-redux-devtools / remotedev monitor into react-native debugger",
-  "main": "bin/main.js",
+  "main": "lib/main.js",
   "files": [
     "bin",
     "bundle.js"
@@ -14,8 +14,9 @@
     "lint": "eslint bin/ app/ test/*.js webpack.*",
     "test": "mocha --compilers js:babel-core/register -r test/setup test/*.test.js",
     "clean": "rm bundle.js",
-    "build:webpack": "webpack --stats --progress",
-    "build": "npm run build:webpack",
+    "build:app": "webpack --stats --progress",
+    "build:main": "babel --out-dir lib src",
+    "build": "npm run build:main && npm run build:app",
     "dev": "webpack-dev-server --config=webpack.config.dev.js --host=localhost --hot --inline --colors",
     "prepublish": "npm run build"
   },
@@ -39,6 +40,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.8.0",
     "babel-core": "^6.4.0",
     "babel-eslint": "^6.0.0",
     "babel-loader": "^6.2.1",

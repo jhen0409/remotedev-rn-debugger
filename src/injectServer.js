@@ -1,21 +1,20 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
 
-const fs = require('fs');
-const path = require('path');
 const name = 'remote-redux-devtools-on-debugger';
 const startFlag = `/* ${name} start */`;
 const endFlag = `/* ${name} end */`;
 const serverFlag = '    _server(argv, config, resolve, reject);';
 
-exports.dir = 'local-cli/server';
-exports.file = 'server.js';
-exports.path = path.join(exports.dir, exports.file);
+export const dir = 'local-cli/server';
+export const file = 'server.js';
+export const fullPath = path.join(dir, file);
 
-exports.inject = (modulePath, options) => {
-  const filePath = path.join(modulePath, exports.path);
+export const inject = (modulePath, options) => {
+  const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
-  const opts = Object.assign({}, options, { runserver: true, injectdebugger: false });
+  const opts = { ...options, runserver: true, injectdebugger: false };
   const code = [
     startFlag,
     `    require("${name}")(${JSON.stringify(opts)})`,
@@ -42,8 +41,8 @@ exports.inject = (modulePath, options) => {
   return true;
 };
 
-exports.revert = (modulePath) => {
-  const filePath = path.join(modulePath, exports.path);
+export const revert = modulePath => {
+  const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
   const serverCode = fs.readFileSync(filePath, 'utf-8');

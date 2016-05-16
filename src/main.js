@@ -1,12 +1,11 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import * as injectDebugger from './injectDebugger';
+import * as injectServer from './injectServer';
+import runServer from './runServer';
 
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
 const name = 'react-native';
-const injectDebugger = require('./injectDebugger');
-const injectServer = require('./injectServer');
-const runServer = require('./runServer');
 const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
 const getModulePath = moduleName =>
@@ -20,13 +19,17 @@ const log = (pass, msg) => {
 
 const getFullPath = filePath => path.resolve(process.cwd(), filePath);
 
-const assignSecureOptions = (options, argv) =>
-  Object.assign({}, options, argv.secure ? {
-    protocol: 'https',
-    key: argv.key ? getFullPath(argv.key) : null,
-    cert: argv.cert ? getFullPath(argv.cert) : null,
-    passphrase: argv.passphrase || null,
-  } : null);
+const assignSecureOptions = (options, { secure, key, cert, passphrase }) => ({
+  ...options,
+  ...(
+    secure ? {
+      protocol: 'https',
+      key: key ? getFullPath(key) : null,
+      cert: cert ? getFullPath(cert) : null,
+      passphrase: passphrase || null,
+    } : null
+  )
+});
 
 module.exports = argv => {
   const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
@@ -72,4 +75,4 @@ module.exports = argv => {
     return runServer(assignSecureOptions(options || { secure: argv.secure, port: 8000 }, argv));
   }
   return true;
-};
+}

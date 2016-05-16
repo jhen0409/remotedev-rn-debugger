@@ -1,20 +1,19 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
 
-const fs = require('fs');
-const path = require('path');
 const name = 'remote-redux-devtools-on-debugger';
 const flag = `<!--  ${name} -->`;
 const end = '</body>\n</html>\n';
 
-exports.dir = 'local-cli/server/util';
-exports.file = 'debugger.html';
-exports.path = path.join(exports.dir, exports.file);
+export const dir = 'local-cli/server/util';
+export const file = 'debugger.html';
+export const fullPath = path.join(dir, file);
 
-exports.inject = (modulePath, bundleCode, options) => {
-  const filePath = path.join(modulePath, exports.path);
+export const inject = (modulePath, bundleCode, options) => {
+  const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
-  const opts = Object.assign({}, options, { autoReconnect: true });
+  const opts = { ...options, autoReconnect: true };
   // Check development mode
   const bundleTag = !process.env.__DEV__ ?
     `  <script>\n    ${bundleCode}\n  </script>` :
@@ -41,8 +40,8 @@ exports.inject = (modulePath, bundleCode, options) => {
   return true;
 };
 
-exports.revert = (modulePath) => {
-  const filePath = path.join(modulePath, exports.path);
+export const revert = modulePath => {
+  const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
   const html = fs.readFileSync(filePath, 'utf-8');

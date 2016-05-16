@@ -1,13 +1,13 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { expect } from 'chai';
-import injectServer from '../bin/injectServer';
+import * as injectServer from '../src/injectServer';
 
 const versions = ['0.21'];
 const fixturePath = 'fixtures/server';
 
 const run = version => {
-  describe(`RN v${version} ${injectServer.path}`, () => {
+  describe(`RN v${version} ${injectServer.fullPath}`, () => {
     const actualCode = fs.readFileSync(
       path.join(__dirname, fixturePath, `${version}.actual.js`),
       'utf-8'

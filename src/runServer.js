@@ -1,17 +1,22 @@
-const fs = require('fs');
-const path = require('path');
-const getport = require('getport');
-const startRemoteDev = require('remotedev-server');
+import fs from 'fs';
+import path from 'path';
+import getport from 'getport';
+import startRemoteDev from 'remotedev-server';
 
 const readFile = filePath =>
   fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf-8');
 
-module.exports = options => {
-  const port = options.port;
-  const opts = Object.assign({}, options, options.protocol !== 'https' ? null : {
-    key: options.key ? readFile(options.key) : null,
-    cert: options.cert ? readFile(options.cert) : null,
-  });
+export default options => {
+  const { port, protocol, key, cert } = options;
+  const opts = {
+    ...options,
+    ...(
+      protocol === 'https' ? {
+        key: key ? readFile(key) : null,
+        cert: cert ? readFile(cert) : null,
+      } : null
+    )
+  };
   return new Promise(resolve => {
     // Check port already used
     getport(port, (err, p) => {
@@ -26,4 +31,4 @@ module.exports = options => {
       }
     });
   });
-};
+}

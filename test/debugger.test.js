@@ -1,13 +1,13 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { expect } from 'chai';
-import injectDebugger from '../bin/injectDebugger';
+import * as injectDebugger from '../src/injectDebugger';
 
 const versions = ['0.21'];
 const fixturePath = 'fixtures/debugger';
 
 const run = version => {
-  describe(`RN v${version} ${injectDebugger.path}`, () => {
+  describe(`RN v${version} ${injectDebugger.fullPath}`, () => {
     const actualCode = fs.readFileSync(
       path.join(__dirname, fixturePath, `${version}.actual.html`),
       'utf-8'
