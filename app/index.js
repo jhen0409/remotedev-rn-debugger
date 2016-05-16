@@ -30,6 +30,7 @@ class DevToolsDock extends Component {
   render() {
     return (
       <Dock
+        zIndex={500}  // Must be less than material-ui z-index
         position="right"
         dimMode="transparent"
         size={this.state.size}

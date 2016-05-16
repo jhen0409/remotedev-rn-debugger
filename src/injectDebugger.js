@@ -25,7 +25,6 @@ export const inject = (modulePath, bundleCode, options) => {
     flag,
     '  <style>',
     '    body { overflow: hidden; }',
-    '    .ReactModalPortal { z-index: 99999999; position: fixed; }',
     '  </style>',
     `  <div id="${name}"></div>`,
     optionsTag, bundleTag, end,
