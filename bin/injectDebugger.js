@@ -17,19 +17,20 @@ exports.inject = (modulePath, bundleCode, options) => {
   const opts = Object.assign({}, options, { autoReconnect: true });
   // Check development mode
   const bundleTag = !process.env.__DEV__ ?
-    `  <script>\n    ${bundleCode}\n  </script>\n` :
-    '  <script src="http://localhost:3030/js/bundle.js"></script>\n';
+    `  <script>\n    ${bundleCode}\n  </script>` :
+    '  <script src="http://localhost:3030/js/bundle.js"></script>';
   const optionsTag = options ?
-    `  <script>window.remotedevOptions = ${JSON.stringify(opts)};</script>\n` :
+    `  <script>window.remotedevOptions = ${JSON.stringify(opts)};</script>` :
     '';
-  const code =
-    `${flag}\n` +
-    '  <style>\n' +
-    '    body { overflow: hidden; }\n' +
-    '    .ReactModalPortal { z-index: 99999999; position: fixed; }\n' +
-    '  </style>\n' +
-    `  <div id="${name}"></div>\n` +
-    optionsTag + bundleTag + end;
+  const code = [
+    flag,
+    '  <style>',
+    '    body { overflow: hidden; }',
+    '    .ReactModalPortal { z-index: 99999999; position: fixed; }',
+    '  </style>',
+    `  <div id="${name}"></div>`,
+    optionsTag, bundleTag, end,
+  ].join('\n');
 
   const html = fs.readFileSync(filePath, 'utf-8');
   let position = html.indexOf(flag);  // already injected ?

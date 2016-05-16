@@ -16,16 +16,17 @@ exports.inject = (modulePath, options) => {
   if (!fs.existsSync(filePath)) return false;
 
   const opts = Object.assign({}, options, { runserver: true, injectdebugger: false });
-  const code =
-    `${startFlag}\n` +
-    `    require("${name}")(${JSON.stringify(opts)})\n` +
-    '      .then(_remotedev =>\n' +
-    '        _remotedev.on("ready", () => {\n' +
-    '          if (!_remotedev.portAlreadyUsed) console.log("-".repeat(80));\n' +
-    `      ${serverFlag}\n` +
-    '        })\n' +
-    '      );\n' +
-    `${endFlag}`;
+  const code = [
+    startFlag,
+    `    require("${name}")(${JSON.stringify(opts)})`,
+    '      .then(_remotedev =>',
+    '        _remotedev.on("ready", () => {',
+    '          if (!_remotedev.portAlreadyUsed) console.log("-".repeat(80));',
+    `      ${serverFlag}`,
+    '        })',
+    '      );',
+    endFlag,
+  ].join('\n');
 
   const serverCode = fs.readFileSync(filePath, 'utf-8');
   let start = serverCode.indexOf(startFlag);  // already injected ?
