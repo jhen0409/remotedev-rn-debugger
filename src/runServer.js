@@ -15,7 +15,7 @@ export default options => {
         key: key ? readFile(key) : null,
         cert: cert ? readFile(cert) : null,
       } : null
-    )
+    ),
   };
   return new Promise(resolve => {
     // Check port already used
@@ -31,4 +31,4 @@ export default options => {
       }
     });
   });
-}
+};

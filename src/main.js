@@ -28,7 +28,7 @@ const assignSecureOptions = (options, { secure, key, cert, passphrase }) => ({
       cert: cert ? getFullPath(cert) : null,
       passphrase: passphrase || null,
     } : null
-  )
+  ),
 });
 
 module.exports = argv => {
@@ -75,4 +75,4 @@ module.exports = argv => {
     return runServer(assignSecureOptions(options || { secure: argv.secure, port: 8000 }, argv));
   }
   return true;
-}
+};

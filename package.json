@@ -12,7 +12,7 @@
     "remotedev-debugger": "bin/cli.js"
   },
   "scripts": {
-    "lint": "eslint bin/ app/ test/*.js webpack.*",
+    "lint": "eslint app/ src/ test/*.js webpack.*",
     "test": "mocha --compilers js:babel-core/register -r test/setup test/*.test.js",
     "clean": "rm bundle.js",
     "build:app": "webpack --stats --progress",
