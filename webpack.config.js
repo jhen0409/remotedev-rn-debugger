@@ -16,6 +16,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      __REACT_DEVTOOLS_GLOBAL_HOOK__: 'false',
     }),
   ],
   resolve: {
