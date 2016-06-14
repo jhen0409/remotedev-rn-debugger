@@ -44,8 +44,7 @@ module.exports = argv => {
     msg = 'Revert injection of RemoteDev monitor from React Native debugger';
     log(passDbg, msg + (!passDbg ? `, the file '${injectDebugger.fullPath}' not found.` : '.'));
 
-    if (!passServ || !passDbg) return false;
-    return true;
+    return passServ && passDbg;
   }
 
   const options = argv.hostname || argv.port ? {

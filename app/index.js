@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
-import DevTools from 'remotedev-app';
+import DevTools from './DevTools';
 
 // prevent setting from previous UI settings
 localStorage.removeItem('s:hostname');
