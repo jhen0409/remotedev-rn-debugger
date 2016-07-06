@@ -1,6 +1,6 @@
 {
   "name": "remote-redux-devtools-on-debugger",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "Injecting remote-redux-devtools / remotedev monitor into react-native debugger",
   "main": "lib/main.js",
   "files": [
