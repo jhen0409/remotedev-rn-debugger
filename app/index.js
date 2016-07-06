@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
 import DevTools from './DevTools';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/night.css';
+import './app.css';
 
 // prevent setting from previous UI settings
 localStorage.removeItem('s:hostname');

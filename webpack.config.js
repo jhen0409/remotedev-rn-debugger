@@ -30,6 +30,9 @@ module.exports = {
       query: {
         presets: ['react'],
       },
+    }, {
+      test: /\.css/,
+      loaders: ['style', 'css'],
     }],
   },
 };

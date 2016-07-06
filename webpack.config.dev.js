@@ -28,6 +28,9 @@ module.exports = {
       query: {
         presets: ['react', 'react-hmre'],
       },
+    }, {
+      test: /\.css/,
+      loaders: ['style', 'css'],
     }],
   },
 };

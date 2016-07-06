@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  saveToStorage, getSettings, getSelectMonitor, saveSelectMonitor,
+  getSettings, getFromStorage, saveToStorage,
 } from 'remotedev-app/lib/utils/localStorage';
 import styles from 'remotedev-app/lib/styles';
 import enhance from 'remotedev-app/lib/hoc';
@@ -16,6 +16,7 @@ import DispatcherButton from 'remotedev-app/lib/components/buttons/DispatcherBut
 import SliderButton from 'remotedev-app/lib/components/buttons/SliderButton';
 import ImportButton from 'remotedev-app/lib/components/buttons/ImportButton';
 import ExportButton from 'remotedev-app/lib/components/buttons/ExportButton';
+import TestGenerator from 'remotedev-app/lib/components/TestGenerator';
 
 class App extends Component {
   static propTypes = {
@@ -39,7 +40,7 @@ class App extends Component {
 
   componentWillMount() {
     this.state = {
-      monitor: getSelectMonitor() || this.props.selectMonitor || 'default',
+      monitor: getFromStorage('select-monitor') || this.props.selectMonitor || 'default',
       modalIsOpen: false,
       dispatcherIsOpen: false,
       sliderIsOpen: true,
@@ -49,6 +50,13 @@ class App extends Component {
     };
     this.socketOptions = getSettings() || this.props.socketOptions;
     this.store = this.createStore();
+    this.testComponent = (
+      <TestGenerator
+        useCodemirror
+        testTemplates={getFromStorage('test-templates')}
+        selectedTemplate={getFromStorage('test-templates-sel')}
+      />
+    );
   }
 
   handleInstancesChanged = (instance, name, toRemove) => {
@@ -74,7 +82,7 @@ class App extends Component {
   };
 
   handleSelectMonitor = (event, index, value) => {
-    this.setState({ monitor: saveSelectMonitor(value) });
+    this.setState({ monitor: saveToStorage('select-monitor', value) });
   };
 
   handleSyncToggle = () => {
@@ -133,7 +141,12 @@ class App extends Component {
             style={this.state.instance === 'auto' ? { display: 'none' } : null}
           />
         </div>
-        <DevTools monitor={monitor} store={this.store} key={`${monitor}-${key}`} />
+        <DevTools
+          monitor={monitor}
+          store={this.store}
+          key={`${monitor}-${key}`}
+          testComponent={this.testComponent}
+        />
         {this.state.sliderIsOpen && <div style={styles.sliderMonitor}>
           <DevTools monitor="SliderMonitor" store={this.store} key={`Slider-${key}`} />
         </div>}
