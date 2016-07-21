@@ -50,11 +50,12 @@ class App extends Component {
     };
     this.socketOptions = getSettings() || this.props.socketOptions;
     this.store = this.createStore();
-    this.testComponent = (
+    this.testComponent = props => (
       <TestGenerator
         useCodemirror
         testTemplates={getFromStorage('test-templates')}
         selectedTemplate={getFromStorage('test-templates-sel')}
+        {...props}
       />
     );
   }
