@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import {
+  getFromStorage, saveToStorage,
+} from 'remotedev-app/lib/utils/localStorage';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
 import DevTools from './DevTools';
@@ -22,7 +25,7 @@ class DevToolsDock extends Component {
   handleSizeChange = eventSize => {
     let size = eventSize > 1 ? 1 : eventSize;
     size = size < 0.1 ? 0.1 : size;
-    localStorage.setItem(dockSizeKey, size);
+    saveToStorage(dockSizeKey, size);
     this.setState({ size });
   };
 
@@ -44,7 +47,7 @@ class DevToolsDock extends Component {
 
 render(
   <DevToolsDock
-    size={Number(localStorage.getItem(dockSizeKey))}
+    size={Number(getFromStorage(dockSizeKey))}
     options={window.remotedevOptions}
   />,
   document.getElementById('remote-redux-devtools-on-debugger')
