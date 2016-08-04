@@ -6,10 +6,6 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 import './app.css';
 
-// prevent setting from previous UI settings
-localStorage.removeItem('s:hostname');
-localStorage.removeItem('s:port');
-
 const dockSizeKey = 'remotedev-dock-size';
 
 class DevToolsDock extends Component {
