@@ -62,7 +62,7 @@
     "react": "^15.2.0",
     "react-dock": "^0.2.3",
     "react-dom": "^15.2.0",
-    "remotedev-app": "^0.5.0-alpha-3",
+    "remotedev-app": "^0.6.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"

@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  getSettings, getFromStorage, saveToStorage,
+  getFromStorage, saveToStorage,
 } from 'remotedev-app/lib/utils/localStorage';
 import styles from 'remotedev-app/lib/styles';
 import enhance from 'remotedev-app/lib/hoc';
 import DevTools from 'remotedev-app/lib/containers/DevTools';
+import Dispatcher from 'remotedev-app/lib/containers/monitors/Dispatcher';
 import {
   createRemoteStore, updateStoreInstance, enableSync, startMonitoring,
 } from 'remotedev-app/lib/store/createRemoteStore';
@@ -29,36 +30,37 @@ class App extends Component {
     }),
   };
 
-  constructor() {
-    super();
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.toggleDispatcher = this.toggleDispatcher.bind(this);
-    this.toggleSlider = this.toggleSlider.bind(this);
-    this.saveSettings = this.saveSettings.bind(this);
-  }
-
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.state = {
-      monitor: getFromStorage('select-monitor') || this.props.selectMonitor || 'default',
+      monitor: getFromStorage('select-monitor') || props.selectMonitor || 'default',
       modalIsOpen: false,
       dispatcherIsOpen: false,
       sliderIsOpen: true,
       instances: {},
-      instance: 'auto',
+      instance: null,
       shouldSync: false,
+      error: null,
     };
-    this.socketOptions = getSettings() || this.props.socketOptions;
+    this.socketOptions = props.socketOptions;
     this.store = this.createStore();
-    this.testComponent = props => (
+    this.testComponent = p => (
       <TestGenerator
         useCodemirror
         testTemplates={getFromStorage('test-templates')}
         selectedTemplate={getFromStorage('test-templates-sel')}
-        {...props}
+        {...p}
       />
     );
   }
+
+  handleError = error => {
+    this.setState({ error });
+  };
+
+  clearError = () => {
+    this.setState({ error: null });
+  };
 
   handleInstancesChanged = (instance, name, toRemove) => {
     const instances = this.state.instances;
@@ -66,8 +68,8 @@ class App extends Component {
       delete instances[instance];
       this.store.liftedStore.deleteInstance(instance);
       if (this.state.instance === instance) {
-        updateStoreInstance('auto');
-        this.setState({ instance: 'auto', shouldSync: false, instances });
+        updateStoreInstance(null);
+        this.setState({ instance: null, shouldSync: false, instances });
         return;
       }
     } else {
@@ -92,41 +94,40 @@ class App extends Component {
     this.setState({ shouldSync });
   };
 
-  createStore() {
-    return createRemoteStore(
+  createStore = () =>
+    createRemoteStore(
       this.socketOptions,
       this.handleInstancesChanged,
+      this.handleError,
       this.state.instance
     );
-  }
 
-  saveSettings(isLocal, options) {
+  saveSettings = (isLocal, options) => {
     this.socketOptions = saveToStorage(
       !isLocal, ['hostname', 'port', 'secure'], options
     ) || undefined;
     this.store = this.createStore();
     this.closeModal();
-  }
+  };
 
-  toggleDispatcher() {
+  toggleDispatcher = () =>
     this.setState({ dispatcherIsOpen: !this.state.dispatcherIsOpen });
-  }
 
-  toggleSlider() {
+  toggleSlider = () =>
     this.setState({ sliderIsOpen: !this.state.sliderIsOpen });
-  }
 
-  openModal(content) {
+  openModal = content => {
     this.modalContent = content;
     this.setState({ modal: this.modal, modalIsOpen: true });
-  }
-  closeModal() {
+  };
+
+  closeModal = () => {
     this.modalContent = null;
     this.setState({ modalIsOpen: false });
-  }
+  };
 
   render() {
-    const { monitor } = this.state;
+    const { error, monitor } = this.state;
     const key = (this.socketOptions ? this.socketOptions.hostname : '') + this.state.instance;
     return (
       <div style={styles.container}>
@@ -139,7 +140,7 @@ class App extends Component {
           <SyncToggle
             on={this.state.shouldSync}
             onClick={this.handleSyncToggle}
-            style={this.state.instance === 'auto' ? { display: 'none' } : null}
+            style={!this.state.instance ? { display: 'none' } : null}
           />
         </div>
         <DevTools
@@ -152,9 +153,10 @@ class App extends Component {
           <DevTools monitor="SliderMonitor" store={this.store} key={`Slider-${key}`} />
         </div>}
         {this.state.dispatcherIsOpen &&
-          <DevTools
-            monitor="DispatchMonitor"
-            store={this.store} dispatchFn={this.store.dispatch}
+          <Dispatcher
+            store={this.store}
+            error={error}
+            clearError={this.clearError}
             key={`Dispatch-${key}`}
           />
         }
