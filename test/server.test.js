@@ -22,7 +22,7 @@ const run = version => {
     const pkgPath = path.join(modulePath, 'package.json');
     fs.mkdirsSync(dirPath);
     fs.writeFileSync(serverPath, actualCode);
-    fs.writeFileSync(pkgPath, `{ "version": "${version}.0-rc.1" }`);
+    fs.writeFileSync(pkgPath, `{ "version": "${version}.0" }`);
 
     it('should inject server', () => {
       let pass = injectServer.inject(modulePath, {
