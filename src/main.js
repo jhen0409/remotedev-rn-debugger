@@ -32,11 +32,12 @@ const assignSecureOptions = (options, { secure, key, cert, passphrase }) => ({
 });
 
 module.exports = argv => {
-  const modulePath = getModulePath(argv.desktop ? 'react-native-desktop' : name);
+  const moduleName = argv.desktop ? 'react-native-desktop' : name;
+  const modulePath = getModulePath(moduleName);
 
   // Revert all injection
   if (argv.revert) {
-    const passServ = injectServer.revert(modulePath);
+    const passServ = injectServer.revert(modulePath, moduleName);
     let msg = 'Revert injection of RemoteDev server from React Native local server';
     log(passServ, msg + (!passServ ? `, the file '${injectServer.fullPath}' not found.` : '.'));
 
@@ -55,7 +56,11 @@ module.exports = argv => {
 
   // Inject server
   if (argv.injectserver) {
-    const pass = injectServer.inject(modulePath, assignSecureOptions(options, argv));
+    const pass = injectServer.inject(
+      modulePath,
+      assignSecureOptions(options, argv),
+      moduleName
+    );
     const msg = 'Inject RemoteDev server into React Native local server';
     log(pass, msg + (pass ? '.' : `, the file '${injectServer.fullPath}' not found.`));
     if (!pass) return false;

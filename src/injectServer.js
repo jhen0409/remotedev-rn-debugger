@@ -11,7 +11,7 @@ export const dir = 'local-cli/server';
 export const file = 'server.js';
 export const fullPath = path.join(dir, file);
 
-export const revert = modulePath => {
+export const revert = (modulePath, moduleName) => {
   const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
@@ -24,10 +24,10 @@ export const revert = modulePath => {
       serverCode.substr(0, start) + serverFlag + serverCode.substr(end, serverCode.length)
     );
   }
-  return injectServer.revert(modulePath);
+  return injectServer.revert(modulePath, moduleName);
 };
 
-export const inject = (modulePath, options) => {
-  revert(modulePath);
-  return injectServer.inject(modulePath, options);
+export const inject = (modulePath, options, moduleName) => {
+  revert(modulePath, moduleName);
+  return injectServer.inject(modulePath, options, moduleName);
 };
