@@ -46,6 +46,8 @@ class App extends Component {
     this.store = this.createStore();
     this.testComponent = p => (
       <TestGenerator
+        name={this.state.instances[this.state.instance || this.store.liftedStore.getInstance()]}
+        store={this.store}
         useCodemirror
         testTemplates={getFromStorage('test-templates')}
         selectedTemplate={getFromStorage('test-templates-sel')}
@@ -152,7 +154,7 @@ class App extends Component {
         {this.state.sliderIsOpen && <div style={styles.sliderMonitor}>
           <DevTools monitor="SliderMonitor" store={this.store} key={`Slider-${key}`} />
         </div>}
-        {this.state.dispatcherIsOpen &&
+        {this.state.dispatcherIsOpen && this.store.liftedStore.getInstance() &&
           <Dispatcher
             store={this.store}
             error={error}
