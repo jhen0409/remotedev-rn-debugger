@@ -3,7 +3,7 @@ import path from 'path';
 import { expect } from 'chai';
 import * as injectServer from '../src/injectServer';
 
-const versions = ['0.21'];
+const versions = ['0.21', '0.31'];
 const fixturePath = 'fixtures/server';
 
 const run = version => {
@@ -19,8 +19,10 @@ const run = version => {
     const modulePath = path.join(__dirname, 'temp', version);
     const dirPath = path.join(modulePath, injectServer.dir);
     const serverPath = path.join(dirPath, injectServer.file);
+    const pkgPath = path.join(modulePath, 'package.json');
     fs.mkdirsSync(dirPath);
     fs.writeFileSync(serverPath, actualCode);
+    fs.writeFileSync(pkgPath, `{ "version": "${version}.0-rc.1" }`);
 
     it('should inject server', () => {
       let pass = injectServer.inject(modulePath, {
