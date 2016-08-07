@@ -48,6 +48,7 @@ class App extends Component {
       <TestGenerator
         name={this.state.instances[this.state.instance || this.store.liftedStore.getInstance()]}
         store={this.store}
+        isRedux={this.store.isRedux()}
         useCodemirror
         testTemplates={getFromStorage('test-templates')}
         selectedTemplate={getFromStorage('test-templates-sel')}
