@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 var argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['secure', 'runserver', 'injectserver', 'injectdebugger', 'desktop', 'revert'],
+  boolean: ['secure', 'runserver', 'injectserver', 'injectdebugger', 'desktop', 'macos', 'revert'],
   default: {
     injectdebugger: true,
   },

@@ -38,7 +38,7 @@ runserver | Start the [remotedev-server](https://github.com/zalmoxisus/remotedev
 secure | Use https protocol for `hostname`. If you're use `runserver` or `injectserver` option, you can provide `key`, `cert`, `passphrase` options for `remotedev-server`. (*default*: `false`)
 injectserver | Inject [remotedev-server](https://github.com/zalmoxisus/remotedev-server) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/server.js`, then you can start ReactNative local server and RemoteDev local server with one command (`$ npm start`). (*default*: `false`)
 injectdebugger | Inject [remotedev-app](https://github.com/zalmoxisus/remotedev-app) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/util/debugger.html`. (*default*: `true`)
-desktop | Use [react-native-desktop](https://github.com/ptmt/react-native-desktop) module name instead of react-native. (*default*: `false`)
+macos | Use [react-native-macos](https://github.com/ptmt/react-native-macos) module name instead of react-native. (*default*: `false`)
 revert | Revert all injection. (*default*: `false`)
 
 If you not set `hostname` or `port` or `runserver` or `injectserver`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
