@@ -4,7 +4,7 @@ import {
 } from 'remotedev-app/lib/utils/localStorage';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
-import DevTools from './DevTools';
+import DevTools from 'remotedev-app';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/night.css';
 import './app.css';
@@ -39,7 +39,11 @@ class DevToolsDock extends Component {
         isVisible
         onSizeChange={this.handleSizeChange}
       >
-        <DevTools socketOptions={this.props.options} />
+        <DevTools
+          useCodemirror
+          noSettings
+          socketOptions={this.props.options}
+        />
       </Dock>
     );
   }
