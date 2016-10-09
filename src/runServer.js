@@ -5,7 +5,7 @@ import startRemoteDev from 'remotedev-server';
 const readFile = filePath =>
   fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf-8');
 
-export default options => {
+export default (options) => {
   const { protocol, key, cert } = options;
   const opts = {
     ...options,

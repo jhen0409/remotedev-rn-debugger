@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger)
 [![NPM version](http://img.shields.io/npm/v/remote-redux-devtools-on-debugger.svg?style=flat)](https://www.npmjs.com/package/remote-redux-devtools-on-debugger)
 [![Dependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger)
-[![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger#info=devDependencies)
+[![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger?type=dev)
 
 ![Demo](https://cloud.githubusercontent.com/assets/3001525/14691258/d38b0f0c-0782-11e6-8602-8ef5e1511bf1.png)
 

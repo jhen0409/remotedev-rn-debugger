@@ -39,7 +39,7 @@ export const inject = (modulePath, bundleCode, options) => {
   return true;
 };
 
-export const revert = modulePath => {
+export const revert = (modulePath) => {
   const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 

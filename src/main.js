@@ -7,7 +7,7 @@ import runServer from './runServer';
 
 const bundleCode = fs.readFileSync(path.join(__dirname, '../bundle.js'), 'utf-8');
 
-const getModuleName = type => {
+const getModuleName = (type) => {
   switch (type) {
     case 'macos':
       return 'react-native-macos';
@@ -20,7 +20,7 @@ const getModuleName = type => {
 };
 const getModulePath = moduleName =>
   path.join(process.cwd(), 'node_modules', moduleName);
-const getModule = type => {
+const getModule = (type) => {
   let moduleName = getModuleName(type);
   let modulePath = getModulePath(moduleName);
   if (type === 'desktop' && !fs.existsSync(modulePath)) {
@@ -49,7 +49,7 @@ const assignSecureOptions = (options, { secure, key, cert, passphrase }) => ({
   ),
 });
 
-module.exports = argv => {
+module.exports = (argv) => {
   const type = argv.desktop ? 'desktop' : (argv.macos && 'macos');
   const { moduleName, modulePath } = getModule(type);
   const serverPath = path.join(moduleName, injectServer.fullPath);

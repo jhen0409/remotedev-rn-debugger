@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", { "devDependencies": true }]*/
+
 const webpack = require('webpack');
 
 module.exports = {

@@ -22,7 +22,7 @@ class DevToolsDock extends Component {
     this.state = { size: props.size || 0.5 };
   }
 
-  handleSizeChange = eventSize => {
+  handleSizeChange = (eventSize) => {
     let size = eventSize > 1 ? 1 : eventSize;
     size = size < 0.1 ? 0.1 : size;
     saveToStorage(dockSizeKey, size);

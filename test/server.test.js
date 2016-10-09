@@ -6,7 +6,7 @@ import * as injectServer from '../src/injectServer';
 const versions = ['0.21', '0.31'];
 const fixturePath = 'fixtures/server';
 
-const run = version => {
+const run = (version) => {
   describe(`RN v${version} ${injectServer.fullPath}`, () => {
     const actualCode = fs.readFileSync(
       path.join(__dirname, fixturePath, `${version}.actual.js`),

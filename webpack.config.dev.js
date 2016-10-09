@@ -1,4 +1,7 @@
+/* eslint import/no-extraneous-dependencies: ["error", { "devDependencies": true }]*/
+
 const webpack = require('webpack');
+
 const port = 3030;
 
 module.exports = {
