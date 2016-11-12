@@ -9,3 +9,36 @@
 svg {
   color: white !important;
 }
+
+.Flex {
+  background-color: rgb(53, 59, 70);
+  color: white;
+}
+
+.redux-container {
+  height: 100%;
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+  body {
+    position: static;
+  }
+  .content {
+    display: none !important;
+  }
+  .redux-container > div > div:nth-child(2) {
+    width: 100%;
+    height: 100%;
+    overflow: visible !important;
+    position: absolute !important;
+    z-index: 2147483647;
+    page-break-after: avoid;
+  }
+  .redux-container > div > div:nth-child(2) * {
+    overflow: visible !important;
+  }
+}

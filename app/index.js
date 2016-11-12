@@ -39,11 +39,13 @@ class DevToolsDock extends Component {
         isVisible
         onSizeChange={this.handleSizeChange}
       >
-        <DevTools
-          useCodemirror
-          noSettings
-          socketOptions={this.props.options}
-        />
+        <div className="redux-container">
+          <DevTools
+            useCodemirror
+            noSettings
+            socketOptions={this.props.options}
+          />
+        </div>
       </Dock>
     );
   }
