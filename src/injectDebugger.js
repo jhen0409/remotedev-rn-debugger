@@ -23,6 +23,7 @@ export const inject = (modulePath, bundleCode, options) => {
     '';
   const code = [
     flag,
+    '  </audio>', // Fix for RN ^0.44, it will skiped on Chrome for old versions of RN
     '  <style>',
     '    body { overflow: hidden; }',
     '  </style>',
