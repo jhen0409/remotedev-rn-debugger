@@ -3,7 +3,7 @@ import path from 'path';
 import { expect } from 'chai';
 import * as injectDebugger from '../src/injectDebugger';
 
-const versions = ['0.21'];
+const versions = ['0.21', '0.44'];
 const fixturePath = 'fixtures/debugger';
 
 const run = (version) => {

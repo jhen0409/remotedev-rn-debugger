@@ -3,7 +3,7 @@ import path from 'path';
 import { expect } from 'chai';
 import * as injectServer from '../src/injectServer';
 
-const versions = ['0.21', '0.31'];
+const versions = ['0.21', '0.31', '0.44', '0.46'];
 const fixturePath = 'fixtures/server';
 
 const run = (version) => {
