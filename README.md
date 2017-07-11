@@ -7,13 +7,15 @@
 
 ![Demo](https://cloud.githubusercontent.com/assets/3001525/14691258/d38b0f0c-0782-11e6-8602-8ef5e1511bf1.png)
 
-Injecting [remotedev-app](https://github.com/zalmoxisus/remotedev-app) monitor into official [Remote debugger](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) of React Native. (formerly remote-redux-devtools-on-debugger)
+Injecting [remotedev-app](https://github.com/zalmoxisus/remotedev-app) monitor into official [Remote debugger](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) of React Native. (formerly `remote-redux-devtools-on-debugger`)
 
 We can use it with:
 
 - [`remote-redux-devtools`](https://github.com/zalmoxisus/remote-redux-devtools)
 - [`remotedev`](https://github.com/zalmoxisus/remotedev)
 - [`mobx-remotedev`](https://github.com/zalmoxisus/mobx-remotedev)
+
+__*NOTE*__ We will stop publish the old name `remote-redux-devtools-on-debugger` on next major version `v0.9`.
 
 ## Installation
 
