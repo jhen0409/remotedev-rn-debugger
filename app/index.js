@@ -33,7 +33,7 @@ class DevToolsDock extends React.Component {
       <Dock
         zIndex={500} // Must be less than material-ui z-index
         position="right"
-        dimMode="transparent"
+        dimMode="none"
         size={this.state.size}
         isVisible
         onSizeChange={this.handleSizeChange}
