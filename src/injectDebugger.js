@@ -5,6 +5,13 @@ const name = 'remote-redux-devtools-on-debugger';
 const flag = `<!--  ${name} -->`;
 const end = '</body>\n</html>\n';
 
+const tips = `
+  <div class="content">
+    <p>Redux DevTools: Type <kbd id='dev_tools_shortcut' class="shortcut">⌃H</kbd> for toggle the dock visibility, <kbd id='dev_tools_shortcut'
+        class="shortcut">⌃Q</kbd> for toggle the dock position.</p>
+  </div>
+`;
+
 export const dir = 'local-cli/server/util';
 export const file = 'debugger.html';
 export const fullPath = path.join(dir, file);
@@ -15,24 +22,27 @@ export const inject = (modulePath, bundleCode, options) => {
 
   const opts = { ...options, autoReconnect: true };
   // Check development mode
-  const bundleTag = !process.env.__DEV__ ?
-    `  <script>\n    ${bundleCode}\n  </script>` :
-    '  <script src="http://localhost:3030/js/bundle.js"></script>';
-  const optionsTag = options ?
-    `  <script>window.remotedevOptions = ${JSON.stringify(opts)};</script>` :
-    '';
+  const bundleTag = !process.env.__DEV__
+    ? `  <script>\n    ${bundleCode}\n  </script>`
+    : '  <script src="http://localhost:3030/js/bundle.js"></script>';
+  const optionsTag = options
+    ? `  <script>window.remotedevOptions = ${JSON.stringify(opts)};</script>`
+    : '';
   const code = [
     flag,
     '  </audio>', // Fix for RN ^0.44, it will skiped on Chrome for old versions of RN
+    options.showtips ? tips : '',
     '  <style>',
     '    body { overflow: hidden; }',
     '  </style>',
     `  <div id="${name}"></div>`,
-    optionsTag, bundleTag, end,
+    optionsTag,
+    bundleTag,
+    end,
   ].join('\n');
 
   const html = fs.readFileSync(filePath, 'utf-8');
-  let position = html.indexOf(flag);  // already injected ?
+  let position = html.indexOf(flag); // already injected ?
   if (position === -1) {
     position = html.indexOf('</body>');
   }

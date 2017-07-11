@@ -18,8 +18,7 @@ const getModuleName = (type) => {
       return 'react-native';
   }
 };
-const getModulePath = moduleName =>
-  path.join(process.cwd(), 'node_modules', moduleName);
+const getModulePath = moduleName => path.join(process.cwd(), 'node_modules', moduleName);
 const getModule = (type) => {
   let moduleName = getModuleName(type);
   let modulePath = getModulePath(moduleName);
@@ -39,18 +38,18 @@ const log = (pass, msg) => {
 const getFullPath = filePath => path.resolve(process.cwd(), filePath);
 const assignSecureOptions = (options, { secure, key, cert, passphrase }) => ({
   ...options,
-  ...(
-    secure ? {
+  ...(secure
+    ? {
       protocol: 'https',
       key: key ? getFullPath(key) : null,
       cert: cert ? getFullPath(cert) : null,
       passphrase: passphrase || null,
-    } : null
-  ),
+    }
+    : null),
 });
 
 module.exports = (argv) => {
-  const type = argv.desktop ? 'desktop' : (argv.macos && 'macos');
+  const type = argv.desktop ? 'desktop' : argv.macos && 'macos';
   const { moduleName, modulePath } = getModule(type);
   const serverPath = path.join(moduleName, injectServer.fullPath);
   const debuggerPath = path.join(moduleName, injectDebugger.fullPath);
@@ -68,19 +67,19 @@ module.exports = (argv) => {
     return passServ && passDbg;
   }
 
-  const options = argv.hostname || argv.port ? {
-    secure: argv.secure,
-    hostname: argv.hostname || 'localhost',
-    port: argv.port || 8000,
-  } : null;
+  const options =
+    argv.hostname || argv.port
+      ? {
+        secure: argv.secure,
+        hostname: argv.hostname || 'localhost',
+        port: argv.port || 8000,
+        showtips: argv.showtips,
+      }
+      : null;
 
   // Inject server
   if (argv.injectserver) {
-    const pass = injectServer.inject(
-      modulePath,
-      assignSecureOptions(options, argv),
-      moduleName
-    );
+    const pass = injectServer.inject(modulePath, assignSecureOptions(options, argv), moduleName);
     const msg = 'Inject RemoteDev server into React Native local server';
     log(pass, msg + (pass ? '.' : `, the file '${serverPath}' not found.`));
     if (!pass) return false;
