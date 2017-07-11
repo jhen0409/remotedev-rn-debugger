@@ -14,26 +14,32 @@ module.exports = {
     publicPath: `http://localhost:${port}/js/`,
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react', 'react-hmre'],
+    loaders: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: ['react'],
+            },
+          },
+        ],
+        exclude: /node_modules/,
       },
-    }, {
-      test: /\.css/,
-      loaders: ['style', 'css'],
-    }],
+      {
+        test: /\.css/,
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 };

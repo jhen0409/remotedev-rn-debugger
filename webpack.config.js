@@ -9,7 +9,7 @@ module.exports = {
     path: __dirname,
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       compressor: {
@@ -22,19 +22,26 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react'],
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: ['react'],
+            },
+          },
+        ],
+        exclude: /node_modules/,
       },
-    }, {
-      test: /\.css/,
-      loaders: ['style', 'css'],
-    }],
+      {
+        test: /\.css/,
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 };
