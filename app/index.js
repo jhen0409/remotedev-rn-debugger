@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import {
-  getFromStorage, saveToStorage,
-} from 'remotedev-app/lib/utils/localStorage';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getFromStorage, saveToStorage } from 'remotedev-app/lib/utils/localStorage';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
 import DevTools from 'remotedev-app';
@@ -11,7 +10,7 @@ import './app.css';
 
 const dockSizeKey = 'remotedev-dock-size';
 
-class DevToolsDock extends Component {
+class DevToolsDock extends React.Component {
   static propTypes = {
     size: PropTypes.number,
     options: PropTypes.object,
@@ -32,7 +31,7 @@ class DevToolsDock extends Component {
   render() {
     return (
       <Dock
-        zIndex={500}  // Must be less than material-ui z-index
+        zIndex={500} // Must be less than material-ui z-index
         position="right"
         dimMode="transparent"
         size={this.state.size}
@@ -40,11 +39,7 @@ class DevToolsDock extends Component {
         onSizeChange={this.handleSizeChange}
       >
         <div className="redux-container">
-          <DevTools
-            useCodemirror
-            noSettings
-            socketOptions={this.props.options}
-          />
+          <DevTools useCodemirror noSettings socketOptions={this.props.options} />
         </div>
       </Dock>
     );
@@ -52,9 +47,6 @@ class DevToolsDock extends Component {
 }
 
 render(
-  <DevToolsDock
-    size={Number(getFromStorage(dockSizeKey))}
-    options={window.remotedevOptions}
-  />,
+  <DevToolsDock size={Number(getFromStorage(dockSizeKey))} options={window.remotedevOptions} />,
   document.getElementById('remote-redux-devtools-on-debugger')
 );
