@@ -1,4 +1,4 @@
-# remotedev-rn-debugger (formerly remotedev-rn-debugger)
+# remotedev-rn-debugger
 
 [![Build Status](https://travis-ci.org/jhen0409/remotedev-rn-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remotedev-rn-debugger)
 [![NPM version](http://img.shields.io/npm/v/remotedev-rn-debugger.svg?style=flat)](https://www.npmjs.com/package/remotedev-rn-debugger)
@@ -7,7 +7,7 @@
 
 ![Demo](https://cloud.githubusercontent.com/assets/3001525/14691258/d38b0f0c-0782-11e6-8602-8ef5e1511bf1.png)
 
-Injecting [remotedev-app](https://github.com/zalmoxisus/remotedev-app) monitor into official [Remote debugger](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) of React Native.
+Injecting [remotedev-app](https://github.com/zalmoxisus/remotedev-app) monitor into official [Remote debugger](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) of React Native. (formerly remote-redux-devtools-on-debugger)
 
 We can use it with:
 
