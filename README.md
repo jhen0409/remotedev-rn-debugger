@@ -1,18 +1,24 @@
-# Remote Redux DevTools monitor on React Native Debugger
+# remotedev-rn-debugger (formerly remotedev-rn-debugger)
 
-[![Build Status](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remote-redux-devtools-on-debugger)
-[![NPM version](http://img.shields.io/npm/v/remote-redux-devtools-on-debugger.svg?style=flat)](https://www.npmjs.com/package/remote-redux-devtools-on-debugger)
-[![Dependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger)
-[![devDependency Status](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remote-redux-devtools-on-debugger?type=dev)
+[![Build Status](https://travis-ci.org/jhen0409/remotedev-rn-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remotedev-rn-debugger)
+[![NPM version](http://img.shields.io/npm/v/remotedev-rn-debugger.svg?style=flat)](https://www.npmjs.com/package/remotedev-rn-debugger)
+[![Dependency Status](https://david-dm.org/jhen0409/remotedev-rn-debugger.svg)](https://david-dm.org/jhen0409/remotedev-rn-debugger)
+[![devDependency Status](https://david-dm.org/jhen0409/remotedev-rn-debugger/dev-status.svg)](https://david-dm.org/jhen0409/remotedev-rn-debugger?type=dev)
 
 ![Demo](https://cloud.githubusercontent.com/assets/3001525/14691258/d38b0f0c-0782-11e6-8602-8ef5e1511bf1.png)
 
-Injecting [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools) / [remotedev](https://github.com/zalmoxisus/remotedev) monitor into React Native debugger. The monitor is used [remotedev-app](https://github.com/zalmoxisus/remotedev-app).
+Injecting [remotedev-app](https://github.com/zalmoxisus/remotedev-app) monitor into official [Remote debugger](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) of React Native.
+
+We can use it with:
+
+- [`remote-redux-devtools`](https://github.com/zalmoxisus/remote-redux-devtools)
+- [`remotedev`](https://github.com/zalmoxisus/remotedev)
+- [`mobx-remotedev`](https://github.com/zalmoxisus/mobx-remotedev)
 
 ## Installation
 
 ```bash
-$ npm install --save-dev remote-redux-devtools-on-debugger
+$ npm install --save-dev remotedev-rn-debugger
 ```
 
 ## Usage
@@ -51,7 +57,7 @@ You can ignore this guide if you used [default options](https://github.com/zalmo
 
 ```bash
 $ npm install --save-dev remote-redux-devtools
-$ npm install --save-dev remote-redux-devtools-on-debugger
+$ npm install --save-dev remotedev-rn-debugger
 ```
 
 #### Add command

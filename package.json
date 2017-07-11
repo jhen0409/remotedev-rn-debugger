@@ -1,7 +1,7 @@
 {
-  "name": "remote-redux-devtools-on-debugger",
+  "name": "remotedev-rn-debugger",
   "version": "0.7.1",
-  "description": "Injecting remote-redux-devtools / remotedev monitor into react-native debugger",
+  "description": "Injecting remotedev-app monitor into official Remote debugger of React Native",
   "main": "lib/main.js",
   "files": [
     "bin",
@@ -9,7 +9,8 @@
     "bundle.js"
   ],
   "bin": {
-    "remotedev-debugger": "bin/cli.js"
+    "remotedev-debugger": "bin/cli.js",
+    "remotedev-rn-debugger": "bin/cli.js"
   },
   "scripts": {
     "lint": "eslint app/ src/ test/*.js webpack.*",
@@ -23,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhen0409/remote-redux-devtools-on-debugger.git"
+    "url": "git+https://github.com/jhen0409/remotedev-rn-debugger.git"
   },
   "keywords": [
     "remote",
