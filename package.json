@@ -1,13 +1,9 @@
 {
   "name": "remotedev-rn-debugger",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Injecting remotedev-app monitor into official Remote debugger of React Native",
   "main": "lib/main.js",
-  "files": [
-    "bin",
-    "lib",
-    "bundle.js"
-  ],
+  "files": ["bin", "lib", "bundle.js"],
   "bin": {
     "remotedev-debugger": "bin/cli.js",
     "remotedev-rn-debugger": "bin/cli.js"
