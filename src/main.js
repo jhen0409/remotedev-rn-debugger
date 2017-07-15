@@ -67,15 +67,16 @@ module.exports = (argv) => {
     return passServ && passDbg;
   }
 
+  const defaultOptions = { showtips: argv.showtips };
   const options =
     argv.hostname || argv.port
       ? {
         secure: argv.secure,
         hostname: argv.hostname || 'localhost',
         port: argv.port || 8000,
-        showtips: argv.showtips,
+        ...defaultOptions,
       }
-      : null;
+      : defaultOptions;
 
   // Inject server
   if (argv.injectserver) {
@@ -95,7 +96,7 @@ module.exports = (argv) => {
 
   // Run RemoteDev server
   if (argv.runserver) {
-    return runServer(assignSecureOptions(options || { secure: argv.secure, port: 8000 }, argv));
+    return runServer(assignSecureOptions({ secure: argv.secure, port: 8000, ...options }, argv));
   }
   return true;
 };
