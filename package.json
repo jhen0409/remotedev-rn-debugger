@@ -69,7 +69,7 @@
   "dependencies": {
     "chalk": "^2.0.1",
     "minimist": "^1.2.0",
-    "remotedev-server": "^0.2.3"
+    "remotedev-server": "^0.2.4"
   },
   "peerDependencies": {
     "remote-redux-devtools": ">= 0.2.0"
