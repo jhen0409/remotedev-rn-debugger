@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import semver from 'semver';
 
 const name = 'remote-redux-devtools-on-debugger';
 const flag = `<!--  ${name} -->`;
@@ -12,12 +13,41 @@ const tips = `
   </div>
 `;
 
-export const dir = 'local-cli/server/util';
-export const file = 'debugger.html';
-export const fullPath = path.join(dir, file);
+export const fileInfos = {
+  'react-native': {
+    '0.50.0-rc.0': {
+      dir: 'local-cli/server/util/debugger-ui',
+      file: 'index.html',
+      path: 'local-cli/server/util/debugger-ui/index.html',
+    },
+  },
+  default: {
+    dir: 'local-cli/server/util',
+    file: 'debugger.html',
+    path: 'local-cli/server/util/debugger.html',
+  },
+};
+
+const getModuleInfo = (modulePath) => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'))); // eslint-disable-line
+  return { version: pkg.version, name: pkg.name };
+};
+
+export function getFileInfo(moduleName, version) {
+  const list = fileInfos[moduleName || 'react-native'] || {};
+  const versions = Object.keys(list);
+  let info = fileInfos.default;
+  for (let i = 0; i < versions.length; i += 1) {
+    if (semver.gte(version, versions[i])) {
+      info = list[versions[i]];
+    }
+  }
+  return info;
+}
 
 export const inject = (modulePath, bundleCode, options) => {
-  const filePath = path.join(modulePath, fullPath);
+  const info = getModuleInfo(modulePath);
+  const filePath = path.join(modulePath, getFileInfo(info.name, info.version).path);
   if (!fs.existsSync(filePath)) return false;
 
   const opts = { ...options, autoReconnect: true };
@@ -51,7 +81,8 @@ export const inject = (modulePath, bundleCode, options) => {
 };
 
 export const revert = (modulePath) => {
-  const filePath = path.join(modulePath, fullPath);
+  const info = getModuleInfo(modulePath);
+  const filePath = path.join(modulePath, getFileInfo(info.name, info.version).path);
   if (!fs.existsSync(filePath)) return false;
 
   const html = fs.readFileSync(filePath, 'utf-8');

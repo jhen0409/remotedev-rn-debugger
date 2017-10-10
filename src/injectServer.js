@@ -15,6 +15,7 @@ export const revert = (modulePath, moduleName) => {
   const filePath = path.join(modulePath, fullPath);
   if (!fs.existsSync(filePath)) return false;
 
+  // Revert legacy injected code
   const serverCode = fs.readFileSync(filePath, 'utf-8');
   const start = serverCode.indexOf(startFlag); // already injected ?
   const end = serverCode.indexOf(endFlag) + endFlag.length;
