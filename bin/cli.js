@@ -22,4 +22,5 @@ argv.port = Number(argv.port || process.env.npm_package_remotedev_port);
 argv.secure = argv.secure || !!process.env.npm_package_remotedev_secure;
 
 const result = require('../lib/main')(argv);
+
 if (!result) process.exit(1);
