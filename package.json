@@ -3,7 +3,11 @@
   "version": "0.8.2",
   "description": "Injecting remotedev-app monitor into official Remote debugger of React Native",
   "main": "lib/main.js",
-  "files": ["bin", "lib", "bundle.js"],
+  "files": [
+    "bin",
+    "lib",
+    "bundle.js"
+  ],
   "bin": {
     "remotedev-debugger": "bin/cli.js",
     "remotedev-rn-debugger": "bin/cli.js"
@@ -69,7 +73,8 @@
   "dependencies": {
     "chalk": "^2.0.1",
     "minimist": "^1.2.0",
-    "remotedev-server": "^0.2.4"
+    "remotedev-server": "^0.2.4",
+    "semver": "^5.4.1"
   },
   "peerDependencies": {
     "remote-redux-devtools": ">= 0.2.0"
