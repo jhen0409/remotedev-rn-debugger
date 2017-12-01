@@ -17,10 +17,6 @@ We can use it with:
 
 __*NOTE*__ We will stop publish the old name `remote-redux-devtools-on-debugger` on next major version `v0.9`.
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/GXkY2etiE71ZpVHZtV36rvhT/jhen0409/remotedev-rn-debugger'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/GXkY2etiE71ZpVHZtV36rvhT/jhen0409/remotedev-rn-debugger.svg' />
-</a>
-
 ## Installation
 
 ```bash
