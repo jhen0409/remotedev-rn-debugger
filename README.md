@@ -48,6 +48,7 @@ injectserver | Inject [remotedev-server](https://github.com/zalmoxisus/remotedev
 injectdebugger | Inject [remotedev-app](https://github.com/zalmoxisus/remotedev-app) with `hostname`, `port` option to `node_modules/react-native/local-cli/server/util/debugger.html`. (*default*: `true`)
 macos | Use [react-native-macos](https://github.com/ptmt/react-native-macos) module name instead of react-native. (*default*: `false`)
 revert | Revert all injection. (*default*: `false`)
+wsengine | The web socket engine used in [remotedev-server](https://github.com/zalmoxisus/remotedev-server#available-options): `ws` or `uws`. If not set, remotedev-server default value is used. (*default*: `undefined`)
 
 If you not set `hostname` or `port` or `runserver` or `injectserver`, it will apply [default options](https://github.com/zalmoxisus/remotedev-app/blob/master/src/app/constants/socketOptions.js).
 
