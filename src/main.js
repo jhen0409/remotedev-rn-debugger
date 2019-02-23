@@ -72,6 +72,7 @@ module.exports = (argv) => {
         secure: argv.secure,
         hostname: argv.hostname || 'localhost',
         port: argv.port || 8000,
+        wsEngine: argv.wsengine,
         ...defaultOptions,
       }
       : defaultOptions;
