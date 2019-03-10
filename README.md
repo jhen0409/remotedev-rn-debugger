@@ -1,5 +1,7 @@
 # remotedev-rn-debugger
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jhen0409/remotedev-rn-debugger.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/jhen0409/remotedev-rn-debugger.svg?branch=master)](https://travis-ci.org/jhen0409/remotedev-rn-debugger)
 [![NPM version](http://img.shields.io/npm/v/remotedev-rn-debugger.svg?style=flat)](https://www.npmjs.com/package/remotedev-rn-debugger)
 [![Dependency Status](https://david-dm.org/jhen0409/remotedev-rn-debugger.svg)](https://david-dm.org/jhen0409/remotedev-rn-debugger)
