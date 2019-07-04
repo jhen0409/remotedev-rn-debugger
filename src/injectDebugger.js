@@ -20,6 +20,11 @@ export const fileInfos = {
       file: 'index.html',
       path: 'local-cli/server/util/debugger-ui/index.html',
     },
+    '0.59.0-rc.0': {
+      dir: '../@react-native-community/cli/build/commands/server/debugger-ui',
+      file: 'index.html',
+      path: '../@react-native-community/cli/build/commands/server/debugger-ui/index.html'
+    },
   },
   default: {
     dir: 'local-cli/server/util',
